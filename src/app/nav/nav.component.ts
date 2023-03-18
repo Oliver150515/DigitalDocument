@@ -22,6 +22,7 @@ export class NavComponent implements OnInit {
   }
 
   login(form: NgForm){
+    this.router.navigateByUrl('/');
     this.cuentaService.login(this.model).subscribe( response => {
       this.router.navigateByUrl('/');
       if(form.valid){

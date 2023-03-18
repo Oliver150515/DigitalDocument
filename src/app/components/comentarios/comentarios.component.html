@@ -1,7 +1,0 @@
-<div *ngFor="let comentario of listadoComentarios" class="card shadow mb-4" style="width: 700px;">
-    <div class="card-body">
-        <p><strong>{{ getNombreUsuarioById(comentario.usuarioComentaId) }}</strong></p>
-        <p>{{ comentario.descripcion }}</p>
-        <p>{{ comentario.fechaRegistro | date }}</p>
-    </div>
-</div>

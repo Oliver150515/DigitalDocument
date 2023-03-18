@@ -1,0 +1,55 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Perfil de usuario</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .profile-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 20px;
+    }
+    .profile-card h1 {
+      font-size: 36px;
+      color: #343a40;
+    }
+    .profile-card p {
+      font-size: 18px;
+      color: #6c757d;
+    }
+    .profile-card .btn {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="profile-card">
+   
+          <h1>Perfil de usuario</h1>
+          <p>Nombre: {{ person.name }}</p>
+          <p>Apellido: {{ person.lastname }}</p>
+          <p>Teléfono: {{ person.phone }}</p>
+          <p>Ciudad: {{ person.city }}</p>
+          <p>Dirección: {{ person.address }}</p>
+          <p>Identi Ficacion: <span *ngIf="person.identificationType === 1">{{person.identification}}</span><span *ngIf="person.identificationType === 2">{{person.identification}}</span></p>
+          <p>Tipo de identificación: <span *ngIf="person.identificationType === 1">Cédula</span><span *ngIf="person.identificationType === 2">Pasaporte</span></p>
+          <p>Fecha de nacimiento: {{ person.birthdate | date }}</p>
+          <button class="btn btn-primary">Editar perfil</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
