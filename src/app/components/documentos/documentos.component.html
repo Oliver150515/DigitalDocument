@@ -12,7 +12,7 @@
         <nav class="navbar justify-content-between mt-2">
             <form class="form-inline ">
                 <label for="Buscar mr-4" style="margin-right: 10px !important;">Buscar Documento :</label>
-                <input class="form-control mr-sm-2" type="text" aria-label="Buscar">
+                <input class="form-control mr-sm-2" type="text" aria-label="Buscar" (keyup)="buscar(termino.value)" #termino>
             </form>
         </nav>
         <div class="card-body ">
@@ -23,17 +23,19 @@
                         <tr>
                             <th>Tipo de documento</th>
                             <th>Institucion</th>
-                            <th>Fecha de Creacion</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
                             <th></th>
                         </tr>
                     </thead>
                     <!-- <app-loading class="mt-5" *ngIf="loading" style="margin-left: 700px; position: absolute;"></app-loading> -->
 
-                    <tbody>
-                        <tr>
-                            <td>Record de Notas</td>
-                            <td>Universidad Iberoamericana (UNIBE)</td>
-                            <td>12-03-2023</td>
+                    <tbody *ngIf="!loading">
+                        <tr *ngFor="let documento of listDocumentos">
+                            <td>{{documento.tipoDocumento}}</td>
+                            <td>{{documento.institucion}}</td>
+                            <td>{{documento.fechaCreacion}}</td>
+                            <td>{{documento.estado}}</td>
                             <td><a href="https://www.calameo.com/read/00533464096f8bc8f56ec" target="_blank">Ver..</a></td>
                         </tr>
                     </tbody>

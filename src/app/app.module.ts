@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { CommonModule } from '@angular/common';
 import { LegalizacionesComponent } from './components/legalizaciones/legalizaciones.component';
-import { BecasComponent } from './components/becas/becas.component';
 import { DocumentosComponent } from './components/documentos/documentos.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { MetodoPagoComponent } from './components/metodo-pago/metodo-pago.component';
@@ -22,12 +21,11 @@ import { InformacionPersonalComponent } from './components/informacion-personal/
     NavComponent,
     HomeComponent,
     LegalizacionesComponent,
-    BecasComponent,
     DocumentosComponent,
     PerfilComponent,
     MetodoPagoComponent,
     InformacionPersonalComponent,
-   ],
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
