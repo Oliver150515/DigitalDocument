@@ -1,0 +1,39 @@
+<div class="modal-dialog modal-lg" role="document" id="modalDahian2">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel2">Modificar Puesto</h5>
+            <button type="button" class="close" (click)="cerrarModal()">
+<span aria-hidden="true">&times;</span>
+</button>
+        </div>
+        <div class="modal-body">
+            <form #editarPuestoForm="ngForm" (ngSubmit)="modificarPuesto(editarPuestoForm)">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="departamentoId">Departamento</label>
+                        <select name="departamentoId" id="departamentoId" class="form-control" [(ngModel)]="model.departamentoId" required>
+                      <option value="{{value?.value}}" *ngFor="let value of getDepartamentosActivos()" >{{value.descripcion}}</option> 
+                    </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="nombre">Nombre</label>
+                        <input name="nombre" type="text" class="form-control" id="nombre" [(ngModel)]="model.nombre" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputState1">Estatus</label>
+                        <select name="estatus" id="inputState1" class="form-control" [(ngModel)]="model.estatus" required>
+                      <option value="{{value?.value}}" *ngFor="let value of getValorEstatus()" >{{value?.descripcion}}</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary mr-4">Guardar  <i class="fas fa-save"></i></button>
+                    <button style="margin-right: 240px; margin-left: 50px;" type="button" class="btn btn-danger" (click)="cerrarModal()">Cancelar  <i class="fas fa-times"></i></button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

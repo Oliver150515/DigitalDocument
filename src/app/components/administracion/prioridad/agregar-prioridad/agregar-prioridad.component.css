@@ -1,0 +1,11 @@
+select:required:invalid {
+    color: gray;
+}
+
+option[value=""] {
+    display: none;
+}
+
+option {
+    color: black;
+}

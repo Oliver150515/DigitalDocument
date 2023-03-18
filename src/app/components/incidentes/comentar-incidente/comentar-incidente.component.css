@@ -1,0 +1,18 @@
+select:required:invalid {
+    color: gray;
+}
+
+option[value=""] {
+    display: none;
+}
+
+option {
+    color: black;
+}
+
+.container-sizer {
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+    margin-top: 20px;
+}

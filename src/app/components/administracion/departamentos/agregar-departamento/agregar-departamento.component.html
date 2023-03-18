@@ -1,0 +1,56 @@
+<div class="modal-dialog modal-lg" role="document" id="modalDepartamento">
+    <div class="modal-content">
+
+        <div class="modal-body">
+            <form #agregarDepartamentoForm="ngForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear Solicitud</h5>
+                    <button type="button" class="close" (click)="cerrarModal(agregarDepartamentoForm)">
+                       <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <br>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputState1">Institucion Academica</label>
+                        <select name="Tipodocumento" id="Tipodocumento" class="form-control" required>
+                            <option value="0" ></option>
+                            <option value="0" >Universidad Tecnológica del Sur (UTESUR)</option>
+                            <option value="0" >Universidad Tecnológica del Cibao Oriental (UTECO)</option>
+                            <option value="0" >Universidad Superior de Agricultura (UNISA)</option>
+                            <option value="0" >Universidad Nacional Pedro Henríquez Ureña (UNPHU)</option>
+                            <option value="0" >Universidad Nacional Tecnológica (UNNATEC)</option>
+                            <option value="0" >Universidad Iberoamericana (UNIBE)</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="nombre2">Carrea Academica</label>
+                        <input name="CarreaAcademica" type="text" class="form-control" id="CarreaAcademica" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Documento">Documento</label>
+                        <input name="Documento" type="file" class="form-control" id="Documento" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputState1">Tipo de documento</label>
+                        <select name="Tipodocumento" id="Tipodocumento" class="form-control" required>
+                            <option value="0" ></option>
+                            <option value="0" >Record de notas</option>
+                            <option value="0" >Carta de grado</option>
+                            <option value="0" >Titulo original</option>
+                            <option value="0" >Copia de titulo</option>
+                            <option value="0" >Certificacion Egresado</option>
+                            <option value="0" >Constancia de Titulo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary mr-4">Guardar   <i class="fas fa-save"></i></button>
+                    <button style="margin-right: 240px; margin-left: 50px;" type="button" class="btn btn-danger">Cancelar  <i class="fas fa-times"></i></button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,113 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Solicitud de Incidente</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 mt-5">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Incidentes</h6>
+        </div>
+
+        <nav class="navbar justify-content-between mt-2">
+            <a class="navbar-brand">
+                <a class="btn btn-primary btn-icon-split ml-1" type="button" (click)="abrirModalCrear()">
+                    <span class="icon text-white-50">
+          <i class="fas fa-plus"></i>
+          </span>
+                    <span class="text">Crear Solicitud</span>
+                </a>
+            </a>
+
+            <form class="form-inline ">
+                <label for="Buscar mr-4" style="margin-right: 10px !important;">Buscar Incidente:</label>
+                <input class="form-control mr-sm-2" type="text" aria-label="Buscar" (keyup)="buscar(termino.value)" #termino>
+            </form>
+        </nav>
+        <div class="card-body ">
+            <div class="custom-scroll-dt">
+                <table class="table table-bordered" width="100%" cellspacing="0" role="grid" style="width: 100%;">
+                    <div [ngClass]="{'cover': (isfull == true), 'cover2': (isfull == false)}" *ngIf="(hoverShowed && !loading)"></div>
+                    <thead>
+                        <tr>
+                            <th>Usuario Reporta</th>
+                            <th>Usuario Asignado</th>
+                            <th>Prioridad</th>
+                            <th>Departamento</th>
+                            <th>Titulo</th>
+                            <th>Descripción</th>
+                            <th>Estatus</th>
+                            <th>Comentarios</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <app-loading class="mt-5" *ngIf="loading" style="margin-left: 700px; position: absolute;"></app-loading>
+
+                    <tbody *ngIf="!loading">
+                        <tr *ngFor="let incidente of listadoIncidente">
+                            <td>{{getNombreUsuarioReportaById(incidente.usuarioReportaId)}}</td>
+                            <td>{{getNombreUsuarioAsignadoById(incidente.usuarioAsignadoId)}}</td>
+                            <td>{{getPrioridadById(incidente.prioridadId)}}</td>
+                            <td>{{getDepartamentoById(incidente.departamentoId)}}</td>
+                            <td>{{incidente.titulo}}</td>
+                            <td class="fixed-text-1">{{incidente.descripcion}}
+                                <button *ngIf="needSeeButton(incidente.descripcion)" class="btn btn-primary align-see-button" (click)="verMas(incidente.descripcion)">Ver mas</button>
+                            </td>
+                            <td>{{getNombreStatusByCode(incidente.estatus)}}</td>
+                            <td>
+                                <a class="btn btn-primary">
+                                    <span class="text" (click)="verComentarios(incidente.incidenteId)">Ver</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-success" (click)="abrirModalEditar(incidente)">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </span>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" (click)="eliminarIncidente(incidente.incidenteId,idUsuarioSesion)">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                </a>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg margin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modalCreateIncidente">
+    <app-agregar-incidente [listadoPrioridadesActivas]="listadoPrioridadesActivas" [listadoDepartamentosActivos]="listadoDepartamentosActivos" (newItemEvent)="refrescarIncidentes()"></app-agregar-incidente>
+</div>
+
+<div class="modal fade bd-example-modal-lg margin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modalEditIncidente">
+    <app-editar-incidente [incidenteActual]="incidenteActual" [listadoPrioridadesActivas]="listadoPrioridadesActivas" [listadoDepartamentosActivos]="listadoDepartamentosActivos" (newItemEvent)="refrescarIncidentes()"></app-editar-incidente>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Comentarios</h5>
+                <button type="button" class="close" (click)="cerrarModal2()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body custom-scroll-dt">
+
+                <app-comentarios [listadoComentarios]="listadoComentarios"></app-comentarios>
+
+            </div>
+        </div>
+    </div>
