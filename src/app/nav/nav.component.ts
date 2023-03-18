@@ -18,12 +18,12 @@ export class NavComponent implements OnInit {
   constructor(private cuentaService: CuentaService, private router: Router) { }
 
   ngOnInit() {
-    //this.currentUser$ = this.cuentaService.currentUser$;
+    this.currentUser$ = this.cuentaService.currentUser$;
   }
 
   login(form: NgForm){
     this.router.navigateByUrl('/');
-    /*this.cuentaService.login(this.model).subscribe( response => {
+    this.cuentaService.login(this.model).subscribe( response => {
       this.router.navigateByUrl('/');
       if(form.valid){
         form.resetForm();
@@ -33,7 +33,7 @@ export class NavComponent implements OnInit {
         icon: 'error',
         title: error.error
       });
-    });*/
+    });
   }
 
   logout(){
