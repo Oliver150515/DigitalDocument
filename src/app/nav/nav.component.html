@@ -1,0 +1,188 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar bg-gradient-primary sidebar-dark accordion" id="accordionSidebar">
+
+
+
+        <div *ngIf="currentUser$ | async">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/">
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-file-code"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Digital Document</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <!-- <i class="bi bi-file-medical-fill"></i> -->
+                    <span>Módulos</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" routerLink="administracion/departamentos">Legalizaciones</a>
+                        <a class="collapse-item">Becas</a>
+                        <a class="collapse-item">Documentos</a>
+
+                        <!-- <a class="collapse-item" routerLink="administracion/departamentos">Departamentos</a>
+                        <a class="collapse-item" routerLink="administracion/puestos">Puestos</a>
+                        <a class="collapse-item" routerLink="administracion/usuarios">Usuarios</a>
+                        <a class="collapse-item" routerLink="administracion/sla">SLA</a>
+                        <a class="collapse-item" routerLink="administracion/prioridad">Prioridad</a> -->
+                    </div>
+                </div>
+            </li>
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Nav Item - Pages Collapse Menu -->
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    <!-- <i class="fas fa-fw fa-folder"></i> -->
+                    <span>Ajustes</span>
+                </a>
+                <div id="collapseThree" class="collapse" aria-labelledby="collapseThree" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item">Perfil</a>
+                        <a class="collapse-item">Tarjeta</a>
+                        <a class="collapse-item">Informacion Personal</a>
+
+                        <!-- <h6 class="collapse-header">Manejo de Incidentes:</h6>
+                        <a class="collapse-item" routerLink="incidentes/solicitudIncidente">Solicitud de Incidente</a>
+                        <a class="collapse-item" routerLink="incidentes/historialSolicitudes">Mi Historial de Solicitudes</a>
+                        <a class="collapse-item" routerLink="incidentes/asignarIncidente">Asignar Incidente</a>
+                        <a class="collapse-item" routerLink="incidentes/comentarIncidente">Comentar Incidente</a>
+                        <a class="collapse-item" routerLink="incidentes/verTodosIncidentes">Ver todos los Incidentes</a>
+                        <a class="collapse-item" routerLink="incidentes/verMisIncidentes">Incidentes Asignados a Mi</a>
+                        <a class="collapse-item" routerLink="incidentes/cerrarIncidente">Cerrar Incidentes</a> -->
+                        <div class="collapse-divider"></div>
+                    </div>
+                </div>
+            </li>
+            
+        </div>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" *ngIf="(currentUser$ | async) as user">
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.nombreUsuario }}</span>
+                            <img class="img-profile rounded-circle" src="../assets/img/undraw_profile.svg">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Cerrar Sesión
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+            <!-- LOGIN -->
+            <div class="container mt-5" *ngIf="(currentUser$ | async) === null">
+                <!-- Outer Row -->
+                <div class="row justify-content-center">
+                    <div class="col-xl-10 col-lg-12 col-md-10">
+                        <div class="card o-hidden border-0 shadow-lg my-5">
+                            <div class="card-body p-0">
+                                <!-- Nested Row within Card Body -->
+                                <div class="row">
+                                    <div class="col-lg-6 d-none d-lg-block">
+                                        <img class="mt-5 ml-2" src="../assets/img/undraw_secure_login_pdn4.svg" width="400">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="p-5">
+                                            <div class="text-center">
+                                                <h1 class="h4 text-gray-900 mb-4"><strong>Iniciar Sesión</strong></h1>
+                                            </div>
+                                            <form #loginForm="ngForm" class="user" (ngSubmit)="login(loginForm)" autocomplete="off">
+                                                <div class="form-group">
+                                                    <input name="nombreUsuario" [(ngModel)]="model.nombreUsuario" type="text" class="form-control form-control-user" placeholder="Cedula">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="Contraseña">
+                                                </div>
+                                                <div>
+                                                    
+                                                </div>
+                                                <button class="btn btn-primary btn-user btn-block mt-4 mb-5" style="background-color: #372EE1;" type="submit">Iniciar Sesión</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="container-fluid" *ngIf="currentUser$ | async">
+                <router-outlet></router-outlet>
+            </div>
+
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container">
+                <div class="copyright text-center">
+                    <span>&copy; 2023 Grupo #1 Inc.</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Seguro deseas salir?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                  </button>
+            </div>
+            <div class="modal-body">Selecciona "Cerrar Sesión" si estas listo para finalizar la sesión actual.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" (click)="logout()" data-dismiss="modal">Cerrar Sesión</a>
+            </div>
+        </div>
+    </div>
+</div>

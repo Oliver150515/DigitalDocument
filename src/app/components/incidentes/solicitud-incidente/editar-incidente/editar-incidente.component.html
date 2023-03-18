@@ -1,0 +1,48 @@
+<div class="modal-dialog modal-lg" role="document" id="modalEditarIncidente">
+    <div class="modal-content">
+
+        <div class="modal-body">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Editar Incidente</h5>
+                <button type="button" class="close" (click)="cerrarModal(editarIncidenteForm)">
+             <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <form class="mt-4" #editarIncidenteForm="ngForm" (ngSubmit)="modificarIncidente(editarIncidenteForm)">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="prioridadId2">Prioridad</label>
+                        <select name="prioridadId" id="prioridadId2" class="form-control" [(ngModel)]="model.prioridadId" required>
+                  <option value=""  selected></option>
+                  <option value="{{prioridad.prioridadId}}" *ngFor="let prioridad of listadoPrioridadesActivas" >{{ prioridad.nombre }}</option> 
+                </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="departamentoId2">Departamento</label>
+                        <select name="departamentoId" id="departamentoId2" class="form-control" [(ngModel)]="model.departamentoId" required>
+                <option value=""  selected></option>
+                <option value="{{departamento.departamentoId}}" *ngFor="let departamento of listadoDepartamentosActivos" >{{ departamento.nombre }}</option> 
+              </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="titulo2">Título</label>
+                        <input name="titulo" type="text" class="form-control" id="titulo2" [(ngModel)]="model.titulo" required>
+                    </div>
+                    <div class="form-group col-md-6 alinear">
+                        <label for="descripcion2">Descripción</label>
+                        <textarea rows="5" cols="50" name="descripcion" type="text" class="form-control" id="descripcion2" [(ngModel)]="model.descripcion" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary mr-4">Guardar  <i class="fas fa-save"></i></button>
+                    <button style="margin-right: 240px; margin-left: 50px;" type="button" class="btn btn-danger" (click)="cerrarModal(editarIncidenteForm)">Cancelar  <i class="fas fa-times"></i></button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

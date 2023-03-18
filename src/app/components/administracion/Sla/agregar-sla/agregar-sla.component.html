@@ -1,0 +1,38 @@
+<div class="modal-dialog modal-lg" role="document" id="modalSla">
+    <div class="modal-content">
+
+        <div class="modal-body">
+            <form #agregarSlaForm="ngForm" (ngSubmit)="agregarSla(agregarSlaForm)">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear Sla</h5>
+                    <button type="button" class="close" (click)="cerrarModal(agregarSlaForm)">
+                     <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="descripcion">Descripción</label>
+                        <input name="descripcion" type="text" class="form-control" id="descripcion" [(ngModel)]="model.descripcion" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cantidadHoras">Cantidad Horas</label>
+                        <input name="cantidadHoras" type="text" class="form-control" id="cantidadHoras" [(ngModel)]="model.cantidadHoras" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputState1">Estatus</label>
+                        <select name="estatus" id="inputState1" class="form-control" [(ngModel)]="model.estatus" required>
+                          <option value="{{value?.value}}" *ngFor="let value of getValorEstatus()" >{{value?.descripcion}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary mr-4">Guardar  <i class="fas fa-save"></i></button>
+                    <button style="margin-right: 240px; margin-left: 50px;" type="button" class="btn btn-danger" (click)="cerrarModal(agregarSlaForm)">Cancelar  <i class="fas fa-times"></i></button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

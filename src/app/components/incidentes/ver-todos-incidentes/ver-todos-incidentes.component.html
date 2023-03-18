@@ -1,0 +1,68 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Ver Todos los Incidentes</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 mt-5">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Incidentes</h6>
+        </div>
+
+        <nav class="navbar justify-content-between mt-2">
+            <a class="navbar-brand">
+                <a class="btn btn-success btn-icon-split ml-1" type="button" (click)="exportExcel()">
+                    <span class="icon text-white-50">
+        <i class="fas fa-file-excel"></i>
+        </span>
+                    <span class="text">Exportar</span>
+                </a>
+            </a>
+
+            <form class="form-inline ">
+                <label for="Buscar mr-4" style="margin-right: 10px !important;">Buscar Incidente:</label>
+                <input class="form-control mr-sm-2" type="text" aria-label="Buscar" (keyup)="buscar(termino.value)" #termino>
+            </form>
+        </nav>
+        <div class="card-body ">
+            <div class="custom-scroll-dt">
+                <table id="todosLosIncidente" class="table table-bordered" width="100%" cellspacing="0" role="grid" style="width: 100%;">
+                    <div [ngClass]="{'cover': (isfull == true), 'cover2': (isfull == false)}" *ngIf="(hoverShowed && !loading)"></div>
+                    <thead>
+
+                        <tr>
+                            <th>Usuario Reporta</th>
+                            <th>Usuario Asignado</th>
+                            <th>Prioridad</th>
+                            <th>Departamento</th>
+                            <th>Titulo</th>
+                            <th>Descripción</th>
+                            <th>Fecha de Cierre</th>
+                            <th>Comentario de Cierre</th>
+                            <th>Estatus</th>
+                        </tr>
+                    </thead>
+                    <app-loading class="mt-5" *ngIf="loading" style="margin-left: 700px; position: absolute;"></app-loading>
+
+                    <tbody *ngIf="!loading">
+                        <tr *ngFor="let incidente of listadoIncidente">
+                            <td>{{getNombreUsuarioReportaById(incidente.usuarioReportaId)}}</td>
+                            <td>{{getNombreUsuarioAsignadoById(incidente.usuarioAsignadoId)}}</td>
+                            <td>{{getPrioridadById(incidente.prioridadId)}}</td>
+                            <td>{{getDepartamentoById(incidente.departamentoId)}}</td>
+                            <td>{{incidente.titulo}}</td>
+                            <td class="fixed-text-1">{{incidente.descripcion}}
+                                <button *ngIf="needSeeButton(incidente.descripcion)" class="btn btn-primary align-see-button" (click)="verMas(incidente.descripcion)">Ver mas</button>
+                            </td>
+                            <td>{{ (incidente.fechaCierre == null) ? 'No aplica': incidente.fechaCierre | date }}</td>
+                            <td>{{ (incidente.comentarioCierre == null) ? 'No aplica' : incidente.comentarioCierre}}</td>
+                            <td>{{getNombreStatusByCode(incidente.estatus)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->

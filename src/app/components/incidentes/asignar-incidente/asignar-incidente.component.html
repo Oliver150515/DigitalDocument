@@ -1,0 +1,37 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Asignar Incidente</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 mt-5">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Asignación</h6>
+        </div>
+        <form class="container-sizer" #asignacionForm="ngForm" (ngSubmit)="agregarAsignacion(asignacionForm)">
+            <div class="form-row ">
+                <div class="form-group col-md-6">
+                    <label for="incidenteid">Titulo incidente</label>
+                    <select name="incidenteId" id="incidenteid" class="form-control" [(ngModel)]="model.incidenteId" required (click)="getUsuarios(model.incidenteId)">
+                  <option value=""  selected></option>
+                  <option  value="{{incidente.incidenteId}}" *ngFor="let incidente of listadoIncidentesSinAsignar" >{{ incidente.titulo }}</option>
+                </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="usuarioAsignadoId">Usuario a asignar</label>
+                    <select name="usuarioAsignadoId" id="usuarioAsignadoId" class="form-control" [(ngModel)]="model.usuarioAsignadoId" required>
+                <option value=""  selected></option>
+                <option value="{{usuario.usuarioId}}" *ngFor="let usuario of listadoUsuarios" >{{ usuario.nombre }}</option>
+              </select>
+                </div>
+            </div>
+            <div class="alinear">
+                <button type="submit" class="btn btn-primary mr-4">Guardar  <i class="fas fa-save"></i></button>
+                <button style="margin-right: 240px;" type="button" class="btn btn-danger" (click)="limpiar(asignacionForm)">Limpiar</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+<!-- /.container-fluid -->
