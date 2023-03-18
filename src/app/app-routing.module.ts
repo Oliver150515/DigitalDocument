@@ -4,7 +4,7 @@ import { AuthGuard } from './guards/auth.guard';
 
 import { LegalizacionesComponent } from './components/legalizaciones/legalizaciones.component';
 import { HomeComponent } from './home/home.component';
-import { BecasComponent } from './components/becas/becas.component';
+
 import { DocumentosComponent } from './components/documentos/documentos.component';
 import { InformacionPersonalComponent } from './components/informacion-personal/informacion-personal.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
@@ -17,7 +17,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: 'legalizaciones/home', component:LegalizacionesComponent},
-      {path: 'becas/home', component:BecasComponent},
+    
       {path: 'documentos/home', component:DocumentosComponent},
       {path: 'informacion/home', component:InformacionPersonalComponent},
       {path: 'perfil/home', component:PerfilComponent},
