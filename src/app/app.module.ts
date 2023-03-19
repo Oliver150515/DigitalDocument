@@ -14,6 +14,7 @@ import { DocumentosComponent } from './components/documentos/documentos.componen
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { MetodoPagoComponent } from './components/metodo-pago/metodo-pago.component';
 import { InformacionPersonalComponent } from './components/informacion-personal/informacion-personal.component';
+import { EditarPerfilComponent } from './components/perfil/editar-perfil/editar-perfil.component';
 
 @NgModule({
   declarations: [				
@@ -25,6 +26,7 @@ import { InformacionPersonalComponent } from './components/informacion-personal/
     PerfilComponent,
     MetodoPagoComponent,
     InformacionPersonalComponent,
+    EditarPerfilComponent,
   ],
   imports: [
     BrowserModule,
