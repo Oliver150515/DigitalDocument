@@ -46,10 +46,14 @@
           <p>Identi Ficacion: <span *ngIf="person.identificationType === 1">{{person.identification}}</span><span *ngIf="person.identificationType === 2">{{person.identification}}</span></p>
           <p>Tipo de identificación: <span *ngIf="person.identificationType === 1">Cédula</span><span *ngIf="person.identificationType === 2">Pasaporte</span></p>
           <p>Fecha de nacimiento: {{ person.birthdate | date }}</p>
-          <button class="btn btn-primary">Editar perfil</button>
+          <button class="btn btn-primary"  (click)="abrirModalEditar()">Editar perfil</button>
         </div>
       </div>
     </div>
   </div>
 </body>
 </html>
+
+<div class="modal fade bd-example-modal-lg margin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modalEditDepartamento">
+  <app-editar-perfil></app-editar-perfil>
+</div>
