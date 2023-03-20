@@ -10,10 +10,16 @@ export class PerfilService {
     baseUrl = environment.apiUrl;
 
     constructor(private http: HttpClient) { }
-
-    editPerfil(model: any){
-        return this.http.put( 'https://localhost:7134/User', model);
+      getPerfil(model:any){
+      
+        return this.http.get( this.baseUrl+'/User?userId='+model);
       }
+    editPerfil(model: any){
+        return this.http.put( this.baseUrl+'/User', model);
+      }
+resetPass(id:any,model:any){
+  return this.http.put( this.baseUrl+'/User/update-password?userId='+id, model);
 
-
+}
+  
 }
