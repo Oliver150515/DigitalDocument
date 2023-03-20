@@ -24,7 +24,7 @@ import { InformacionPersonalComponent } from './components/informacion-personal/
     DocumentosComponent,
     PerfilComponent,
     MetodoPagoComponent,
-    InformacionPersonalComponent,
+    InformacionPersonalComponent
   ],
   imports: [
     BrowserModule,

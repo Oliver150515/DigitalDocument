@@ -14,10 +14,14 @@ import { CuentaService } from '../services/cuenta.service';
 export class NavComponent implements OnInit {
   model: any = {};
   currentUser$: Observable<CuentaUsuario>;
+  registro: boolean = false;
+  forgot_password: boolean = false;
 
   constructor(private cuentaService: CuentaService, private router: Router) { }
 
   ngOnInit() {
+    this.registro = false;
+    this.forgot_password = false;
     this.currentUser$ = this.cuentaService.currentUser$;
   }
 
