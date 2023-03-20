@@ -24,7 +24,6 @@ export class DocumentosComponent implements OnInit {
   }
 
   buscar(termino: string){
-    console.log('Buscando');
     let arrayToReturn: any[] = [];
     termino = termino.toLowerCase();
     this.loading = true;
