@@ -1,0 +1,55 @@
+<main class="pt-3">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- LEGALIZACIONES REALZADAS -->
+            <div class="col-md-3">
+                <div class="card border-info mb-3" style="max-width: 20rem;">
+                    <div class="card-header"><Strong>Total Legalizaciones Realizadas</Strong></div>
+                    <div class="card-body text-info">
+                        <h2 class="text-center">{{dashboardTotal.allLegalizationAmount}}</h2>
+                    </div>
+                </div>
+            </div>
+            <!-- CLOSE LEGALIZACIONES REALZADAS -->
+            <!-- LEGALIZACIONES PENDIENTES -->
+            <div class="col-md-3">
+                <div class="card border-warning mb-3" style="max-width: 20rem;">
+                    <div class="card-header"><Strong>Legalizaciones Pendientes Actual</Strong></div>
+                    <div class="card-body text-warning">
+                        <h2 class="text-center">{{dashboardTotal.todayPendingLegalationsAmount}}</h2>
+                    </div>
+                </div>
+            </div>
+            <!-- CLOSE LEGALIZACIONES PENDIENTES -->
+            <!-- LEGALIZACIONES DENEGADAS -->
+            <div class="col-md-3">
+                <div class="card border-danger mb-3" style="max-width: 20rem;">
+                    <div class="card-header"><Strong>Legalizaciones Denegadas Actual</Strong></div>
+                    <div class="card-body text-danger">
+                        <h2 class="text-center">{{dashboardTotal.todayDenyLegalationsAmount}}</h2>
+                    </div>
+                </div>
+            </div>
+            <!-- CLOSE LEGALIZACIONES APROBADAS -->
+            <!-- LEGALIZACIONES DENEGADAS -->
+            <div class="col-md-3">
+                <div class="card border-success mb-3" style="max-width: 20rem;">
+                    <div class="card-header"><Strong>Legalizaciones Aprobadas Actual</Strong></div>
+                    <div class="card-body text-success">
+                        <h2 class="text-center">{{dashboardTotal.todayApprovedLegalationsAmount}}</h2>
+                    </div>
+                </div>
+            </div>
+            <!-- CLOSE LEGALIZACIONES APROBADAS -->
+
+            <!-- CHART -->
+            <div class="col-md-5">
+                <div class="chart-container">
+                    <canvas  id="MyChart" >{{ chart }}</canvas>
+                </div>
+            </div>
+            <!-- END CHART -->
+        </div>
+    </div>
+</main>
+

@@ -1,33 +1,69 @@
 import { Component, OnInit } from '@angular/core';
-import { Incidente } from '../models/Incidente.model';
-import { IncidenteService } from '../services/incidente.service';
+import { Dashboard } from '../models/Dashboard.model';
+import { DashboardService } from '../services/dashboard.service';
+import Chart from 'chart.js/auto';
+
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
-  public totalIncidenteAbiertos: any;
-  public misIncidentes: any
+  public dashboardTotal: Dashboard;
+  public haveData: boolean = false;
+  public chart: any;
+
   usuarioIdSesion = JSON.parse(localStorage.getItem('user'))?.usuarioId;
-  constructor(private incidenteService: IncidenteService) { }
+
+
+  constructor(private dashboardSrv: DashboardService) { }
 
   ngOnInit() {
+    this.getDashboardData();
   }
 
-  getTotalIncidentes(){
-    this.incidenteService.getIncidentesActivos().subscribe( (res: Incidente[]) => {
-      this.totalIncidenteAbiertos = res.length;
+  getDashboardData(){
+    this.dashboardSrv.getDashboardData().subscribe( (res : Dashboard) => {
+      this.dashboardTotal = res;
+
+      const isEmpty = Object.values(res).every(x => x === null || x === '');
+
+      if(!isEmpty){
+        this.createChart(this.dashboardTotal);
+        this.haveData = true;
+      }
     });
   }
 
-  getMisIncidentes(){
-    this.incidenteService.getIncidentesAsignadoByUser(this.usuarioIdSesion).subscribe( (res:Incidente[]) => {
-      this.misIncidentes = res.length;
-    })
+  createChart(dashboardTotal: Dashboard){
+
+    this.chart = new Chart("MyChart", {
+      type: 'pie', //this denotes tha type of chart
+
+      data: {// values on X-Axis
+        labels: ['Legalizaciones Realizadas', 'Legalizaciones Pendientes','Legalizaciones Denegadas','Legalizaciones Aprobadas'],
+	      datasets: [{
+          data: [
+            dashboardTotal.allLegalizationAmount,
+            dashboardTotal.todayPendingLegalationsAmount,
+            dashboardTotal.todayDenyLegalationsAmount,
+            dashboardTotal.todayApprovedLegalationsAmount
+          ],
+          backgroundColor: [
+            'blue',
+            'yellow',
+            'red',
+			      'green',		
+          ],
+          hoverOffset: 4
+        }],
+      },
+      options: {
+        aspectRatio: 1.1
+      }
+    });
   }
-
-
-
 }
