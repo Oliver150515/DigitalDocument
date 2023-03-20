@@ -2,32 +2,30 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav sidebar bg-gradient-primary sidebar-dark accordion" id="accordionSidebar">
-
+    <ul class="navbar-nav sidebar bg-gradient-primary sidebar-dark accordion" id="accordionSidebar" *ngIf="(currentUser$ | async) as user" >
 
 
         <div *ngIf="currentUser$ | async">
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/">
+                <div class="mx-2" style="text-transform: capitalize;">DigitalDocument</div>
                 <div class="sidebar-brand-icon">
-                    <i class="fas fa-file-code"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Digital Document</div>
+                    <img src="../assets/img/download.png" alt="" width="60">
+                 </div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <li class="nav-item mt-3">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <!-- <i class="bi bi-file-medical-fill"></i> -->
-                    <span>Módulos</span>
+                    <span>Home</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item">Legalizaciones</a>
-                        <a class="collapse-item" routerLink="documentos/home">Consultas</a>
+                        <a class="collapse-item" routerLink="administracion/departamentos">Dashboard</a>
                     </div>
                 </div>
             </li>
@@ -38,15 +36,44 @@
             <!-- Nav Item - Pages Collapse Menu -->
             
             <li class="nav-item">
-                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                    <!-- <i class="fas fa-fw fa-folder"></i> -->
-                    <span>Ajustes</span>
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <!-- <i class="bi bi-file-medical-fill"></i> -->
+                    <span>Solicitudes</span>
                 </a>
-                <div id="collapseThree" class="collapse" aria-labelledby="collapseThree" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" routerLink="perfil/home">Perfil</a>
-                        <a class="collapse-item">Informacion Personal</a>
-                        <div class="collapse-divider"></div>
+                        <a class="collapse-item" routerLink="administracion/departamentos">Solicitude Legalización</a>
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider">
+            <!-- Nav Item - Pages Collapse Menu -->
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    <!-- <i class="bi bi-file-medical-fill"></i> -->
+                    <span>Consultas</span>
+                </a>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" routerLink="administracion/departamentos">Consultas Legalización</a>
+                    </div>
+                </div>
+            </li>
+
+
+            <hr class="sidebar-divider">
+            <!-- Nav Item - Pages Collapse Menu -->
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                    <!-- <i class="bi bi-file-medical-fill"></i> -->
+                    <span>Configuración</span>
+                </a>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" routerLink="administracion/departamentos">Configuración Perfil</a>
                     </div>
                 </div>
             </li>
@@ -59,7 +86,7 @@
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
-        <div id="content">
+        <div id="content" style="height: 965px;">
 
             <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" *ngIf="(currentUser$ | async) as user">
@@ -86,36 +113,173 @@
                 </ul>
 
             </nav>
-            <!-- End of Topbar -->
             <!-- LOGIN -->
             <div class="container mt-5" *ngIf="(currentUser$ | async) === null">
-                <!-- Outer Row -->
-                <div class="row justify-content-center">
-                    <div class="col-xl-10 col-lg-12 col-md-10">
-                        <div class="card o-hidden border-0 shadow-lg my-5">
-                            <div class="card-body p-0">
-                                <!-- Nested Row within Card Body -->
-                                <div class="row">
-                                    <div class="col-lg-6 d-none d-lg-block">
-                                        <img class="mt-5 ml-2" src="../assets/img/undraw_secure_login_pdn4.svg" width="400">
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="p-5">
-                                            <div class="text-center">
-                                                <h1 class="h4 text-gray-900 mb-4"><strong>Iniciar Sesión</strong></h1>
+                <div class="row" *ngIf="registro ==false">
+                    <div class="col-3">
+                        <img class=""  style="margin-left: -300px; margin-top: 200px;" src="../assets/img/undraw_collecting_re_lp6p.svg" width="600">
+                        <div class="mt-5" style="margin-left: -300px;">
+                            <h1>DigitalDocument</h1>
+                            <p>Si no tienes una cuenta creada puedes <a class="registro" (click)="registro = true;" >¡Registrarte Aqui!</a></p>
+                        </div>
+                    </div>
+                    <div class="col-9 mt-5" >
+                        <div class="row justify-content-center" >
+                            <div class="col-xl-12 col-lg-12 col-md-8" style="margin-top: 160px; margin-right: -400px;">
+                                <div class="card o-hidden border-0 shadow-lg my-5">
+                                    <div class="card-body p-0">
+                                        <!-- Nested Row within Card Body -->
+                                        <div class="row" *ngIf="!forgot_password">
+                                            <div class="col-lg-6 d-none d-lg-block">
+                                                <img class="mt-5 ml-2" src="../assets/img/undraw_secure_login_pdn4.svg" width="400">
                                             </div>
-                                            <form #loginForm="ngForm" class="user" (ngSubmit)="login(loginForm)" autocomplete="off">
-                                                <div class="form-group">
-                                                    <input name="nombreUsuario" [(ngModel)]="model.nombreUsuario" type="text" class="form-control form-control-user" placeholder="Cedula">
+                                            <div class="col-lg-6">
+                                                <div class="p-5">
+                                                    <div class="text-center">
+                                                        <h1 class="h4 text-gray-900 mb-4"><strong>Iniciar Sesión</strong></h1>
+                                                    </div>
+                                                    <form #loginForm="ngForm" class="user" (ngSubmit)="login(loginForm)" autocomplete="off">
+                                                        <div class="form-group">
+                                                            <input name="nombreUsuario" [(ngModel)]="model.nombreUsuario" type="text" class="form-control form-control-user" placeholder="Cedula">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="Contraseña">
+                                                        </div>
+                                                        <div>
+                                                         <a class="forgot-password mr-3 mb-4" (click)="forgot_password = true;">¿Has olvidado tu contraseña?</a>   
+                                                        </div>
+                                                        <button class="btn btn-primary btn-user btn-block mt-4 mb-5" style="background-color: #372EE1;" type="submit">Iniciar Sesión</button>
+                                                    </form>
                                                 </div>
-                                                <div class="form-group">
-                                                    <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="Contraseña">
+                                            </div>
+                                        </div>
+
+                                        <div class="row" *ngIf="forgot_password">
+                                            <div class="col-lg-6 d-none d-lg-block">
+                                                <img class="ml-5" style="margin-top: 76px;" src="../assets/img/undraw_forgot_password_re_hxwm.svg" width="400">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="p-5">
+                                                    <div class="text-center">
+                                                        <h1 class="h4 text-gray-900 mb-4"><strong>Cambiar Contraseña</strong></h1>
+                                                    </div>
+                                                    <form #loginForm="ngForm" class="user" (ngSubmit)="login(loginForm)" autocomplete="off">
+                                                        <div class="form-group">
+                                                            <input name="nombreUsuario" [(ngModel)]="model.nombreUsuario" type="text" class="form-control form-control-user" placeholder="Correo">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="Nueva Contraseña">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="Confirmar Contraseña">
+                                                        </div>
+                                                        <div>
+                                                            <a class="forgot-password mr-3 mb-4" (click)="forgot_password = false;"><- Iniciar Sesión</a>   
+                                                           </div>
+                                                        <button class="btn btn-primary btn-user btn-block mt-4 mb-5" style="background-color: #372EE1;" type="submit">Cambiar Contraseña</button>
+                                                    </form>
                                                 </div>
-                                                <div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <!--REGISTRO-->
+
+                <div class="row" *ngIf="registro ==true">
+                    <div class="col-4">
+                        <img class=""  style="margin-left: -300px; margin-top: 100px;" src="../assets/img/undraw_sign__up_nm4k.svg" width="600">
+                        <div class="mt-5" style="margin-left: -300px;">
+                            <h1>DigitalDocument</h1>
+                            <p>Si tienes una cuenta puedes <a class="registro" (click)="registro = false;" >¡Iniciar Sesión Aquí!</a></p>
+                        </div>
+                    </div>
+                    <div class="col-8" >
+                        <div class="row justify-content-center" >
+                            <div class="col-xl-12 col-lg-12 col-md-8" style="margin-right: -400px;">
+                                <div class="card o-hidden border-0 shadow-lg my-5">
+                                    <div class="card-body p-0">
+                                        <!-- Nested Row within Card Body -->
+                                        <div >
+                                                <div class="p-5">
+                                                    <div class="">
+                                                        <h1 class="h4 text-gray-900 mb-4"><strong>Registrar Usuario</strong></h1>
+                                                    </div>
+                                                    <form #loginForm="ngForm" class="user mt-5" (ngSubmit)="login(loginForm)" autocomplete="off">
+                                                   
+                                                      
+                                                        <div class="form-group">
+                                                            <label style="font-weight: bold;">Nombre</label>
+                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="Nombre">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label style="font-weight: bold;">Apellido</label>
+                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="Apellido">
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label style="font-weight: bold;">Tipo Identificacion</label>
+                                                                    <select class="form-control form-control-select">
+                                                                        <option value="1">Cedula</option>
+                                                                        <option value="2">Pasaporte</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label style="font-weight: bold;">Identificacion</label>
+                                                                    <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="000-0000000-0">
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     
+
+
+                                                        <div class="form-group">
+                                                            <label style="font-weight: bold;">Telefono</label>
+                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="809-000-0000">
+                                                        </div>
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-5">
+                                                                <div class="form-group">
+                                                                    <label style="font-weight: bold;">Ciudad</label>
+                                                                    <select class="form-control form-control-select">
+                                                                        <option value="1">Cedula</option>
+                                                                        <option value="2">Pasaporte</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <div class="form-group">
+                                                                    <label style="font-weight: bold;">Direccion</label>
+                                                                    <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="809-000-0000">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                        <div class="form-group">
+                                                            <label style="font-weight: bold;">Correo</label>
+                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="example@gmail.com">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label style="font-weight: bold;">Contraseña</label>
+                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="xxxxxxxxxxxxxxx">
+                                                        </div>
+                                                       
+
+                                                        <button class="btn btn-primary btn-user btn-block mt-4 mb-3" style="background-color: #372EE1;" type="submit">Registrar</button>
+                                                    </form>
                                                 </div>
-                                                <button class="btn btn-primary btn-user btn-block mt-4 mb-5" style="background-color: #372EE1;" type="submit">Iniciar Sesión</button>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -123,10 +287,11 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             
 
-            <div class="container-fluid" *ngIf="currentUser$ | async">
+            <div class="container-fluid" >
                 <router-outlet></router-outlet>
             </div>
 
@@ -135,7 +300,7 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-        <footer class="sticky-footer bg-white">
+        <footer class="sticky-footer bg-white" *ngIf="(currentUser$ | async) as user">
             <div class="container">
                 <div class="copyright text-center">
                     <span>&copy; 2023 Grupo #1 Inc.</span>
@@ -152,7 +317,7 @@
 
 
 <!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

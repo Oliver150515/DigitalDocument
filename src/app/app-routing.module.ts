@@ -17,7 +17,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: 'legalizaciones/home', component:LegalizacionesComponent},
-    
       {path: 'documentos/home', component:DocumentosComponent},
       {path: 'informacion/home', component:InformacionPersonalComponent},
       {path: 'perfil/home', component:PerfilComponent},
@@ -26,7 +25,8 @@ const routes: Routes = [
     ]
   },
   
-  {path: '**', component: HomeComponent, pathMatch: 'full' }
+  {path: '**', component: HomeComponent, pathMatch: 'full' },
+  
 ];
 
 @NgModule({

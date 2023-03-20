@@ -1,0 +1,24 @@
+.registro {
+    color:#4e73df;
+
+}
+
+.forgot-password {
+    color:#4e73df;
+    font-size: 13px;
+    float: right;
+}
+
+.registro:hover {
+    cursor: pointer;
+}
+
+.forgot-password:hover {
+    cursor: pointer;
+}
+
+.form-control-select {
+    font-size: 0.9rem;
+    border-radius: 10rem;
+    height: 50px;
+  }
