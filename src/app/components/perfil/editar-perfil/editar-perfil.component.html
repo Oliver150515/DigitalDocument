@@ -10,33 +10,18 @@
             <form #editarDepartamentoForm="ngForm" (ngSubmit)="modificarDepartamento(editarDepartamentoForm)">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="nombre">Nombre</label>
-                        <input name="nombre" type="text" class="form-control" id="nombre" [(ngModel)]="model.name" required>
+                        <label for="nombre">oldPassword</label>
+                        <input name="nombre" type="password" class="form-control" id="nombre" [(ngModel)]="model.oldPassword" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="nombre">Apellido</label>
-                        <input name="apellido" type="text" class="form-control" id="apellido" [(ngModel)]="model.lastname" required>
+                        <label for="nombre">newPassword</label>
+                        <input name="apellido" type="password" class="form-control" id="apellido" [(ngModel)]="model.newPassword" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="nombre">Identificacion</label>
-                        <input name="identificacion" type="text" class="form-control" id="identificacion" [(ngModel)]="model.identification" required>
+                        <label for="nombre">passwordConfirmation</label>
+                        <input name="identificacion" type="password" class="form-control" id="identificacion" [(ngModel)]="model.passwordConfirmation" required>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="nombre">Telefono</label>
-                        <input name="telefono" type="text" class="form-control" id="telefono" [(ngModel)]="model.phone" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="nombre">Fecha de nacimiento</label>
-                        <input name="birthdate" type="date" class="form-control" id="birthdate" [(ngModel)]="model.birthdate" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="nombre">ciudad</label>
-                        <input name="city" type="text" class="form-control" id="city" [(ngModel)]="model.city" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="nombre">Direccion</label>
-                        <input name="address" type="text" class="form-control" id="address" [(ngModel)]="model.address" required>
-                    </div>
+                 
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary mr-4">Guardar  <i class="fas fa-save"></i></button>

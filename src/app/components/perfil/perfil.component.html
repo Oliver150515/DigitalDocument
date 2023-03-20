@@ -34,19 +34,45 @@
 <body>
   <div class="container">
     <div class="row justify-content-center">
+      <img class="img-profile rounded-circle" src="../assets/img/undraw_profile.svg" width="500" height="300">
       <div class="col-md-8">
         <div class="profile-card">
-   
-          <h1>Perfil de usuario</h1>
-          <p>Nombre: {{ person.name }}</p>
-          <p>Apellido: {{ person.lastname }}</p>
-          <p>Teléfono: {{ person.phone }}</p>
-          <p>Ciudad: {{ person.city }}</p>
-          <p>Dirección: {{ person.address }}</p>
-          <p>Identi Ficacion: <span *ngIf="person.identificationType === 1">{{person.identification}}</span><span *ngIf="person.identificationType === 2">{{person.identification}}</span></p>
-          <p>Tipo de identificación: <span *ngIf="person.identificationType === 1">Cédula</span><span *ngIf="person.identificationType === 2">Pasaporte</span></p>
-          <p>Fecha de nacimiento: {{ person.birthdate | date }}</p>
-          <button class="btn btn-primary"  (click)="abrirModalEditar()">Editar perfil</button>
+          <form #editarDepartamentoForm="ngForm" (ngSubmit)="modificarDepartamento(editarDepartamentoForm)">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="nombre">Nombre</label>
+                    <input name="nombre" type="text" class="form-control" id="nombre" [(ngModel)]="model.name" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="nombre">Apellido</label>
+                    <input name="apellido" type="text" class="form-control" id="apellido" [(ngModel)]="model.lastname" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="nombre">Identificacion</label>
+                    <input name="identificacion" type="text" class="form-control" id="identificacion" [(ngModel)]="model.identification" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="nombre">Telefono</label>
+                    <input name="telefono" type="text" class="form-control" id="telefono" [(ngModel)]="model.phone" required>
+                </div>
+             
+                <div class="form-group col-md-6">
+                    <label for="nombre">ciudad</label>
+                    <input name="city" type="text" class="form-control" id="city" [(ngModel)]="model.city" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="nombre">Direccion</label>
+                    <input name="address" type="text" class="form-control" id="address" [(ngModel)]="model.addresss" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary mr-4">Guardar  <i class="fas fa-save"></i></button>
+                <button class="btn btn-primary" routerLink="resetPassPerfil/home">Reset pass</button>
+            </div>
+          
+        </form>
+       
+          
         </div>
       </div>
     </div>
@@ -54,6 +80,3 @@
 </body>
 </html>
 
-<div class="modal fade bd-example-modal-lg margin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modalEditDepartamento">
-  <app-editar-perfil></app-editar-perfil>
-</div>

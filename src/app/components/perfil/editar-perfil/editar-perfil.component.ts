@@ -11,12 +11,13 @@ declare var $: any;
 })
 export class EditarPerfilComponent implements OnInit {
   model: any = {};
-
+  public data: {} = {};
   @Output() newItemEvent = new EventEmitter<string>();
 
   constructor(private perfilService: PerfilService) { }
 
   ngOnInit() {
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -27,16 +28,16 @@ export class EditarPerfilComponent implements OnInit {
     this.newItemEvent.emit();
   }
 
+  
+
   modificarDepartamento(form: NgForm){
     if(form.valid){
 
-      this.model.id ="7F094C35-DC3A-4CF8-A058-38F7977D9310";
-      this.model.identificationType=1;
-      this.model.email = "xd@hotmail.com",
-      this.model.password = "jss"
+      var  id=JSON.parse(localStorage.getItem('user'))?.usuarioId.toString();
+    
       // this.model.birthdate = new Date(this.model.birthdate);
       
-this.perfilService.editPerfil(this.model).subscribe( res => {
+this.perfilService.resetPass(id,this.model).subscribe( res => {
   Swal.fire({
     icon: 'success',
     title: 'Departamento modificado satisfactoriamente'

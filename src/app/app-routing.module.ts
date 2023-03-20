@@ -9,7 +9,7 @@ import { DocumentosComponent } from './components/documentos/documentos.componen
 import { InformacionPersonalComponent } from './components/informacion-personal/informacion-personal.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { MetodoPagoComponent } from './components/metodo-pago/metodo-pago.component';
-
+import { EditarPerfilComponent } from './components/perfil/editar-perfil/editar-perfil.component';
 const routes: Routes = [
   {path: '', component: HomeComponent  },
   { path: '', 
@@ -21,6 +21,7 @@ const routes: Routes = [
       {path: 'documentos/home', component:DocumentosComponent},
       {path: 'informacion/home', component:InformacionPersonalComponent},
       {path: 'perfil/home', component:PerfilComponent},
+      {path: 'resetPassPerfil/home', component:EditarPerfilComponent},
       {path: 'metodoPago/home', component:MetodoPagoComponent},
     ]
   },
