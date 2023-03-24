@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
   getDashboardData(){
     this.dashboardSrv.getDashboardData().subscribe( (res : Dashboard) => {
       this.dashboardTotal = res;
+      console.log(res);
 
       const isEmpty = Object.values(res).every(x => x === null || x === '');
 

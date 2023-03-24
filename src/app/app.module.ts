@@ -9,12 +9,24 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { CommonModule } from '@angular/common';
+
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTableModule} from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
+
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 import { LegalizacionesComponent } from './components/legalizaciones/legalizaciones.component';
 import { DocumentosComponent } from './components/documentos/documentos.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { MetodoPagoComponent } from './components/metodo-pago/metodo-pago.component';
 import { EditarPerfilComponent } from './components/perfil/editar-perfil/editar-perfil.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [					
     AppComponent,
@@ -33,7 +45,14 @@ import { NgxMaskModule } from 'ngx-mask';
     FormsModule,
     CommonModule,
     BsDropdownModule.forRoot(),
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatTableModule,
+    PdfViewerModule,
+    MatButtonModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
