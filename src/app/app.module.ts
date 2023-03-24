@@ -9,11 +9,13 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { CommonModule } from '@angular/common';
+
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTableModule} from '@angular/material/table';
 
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { LegalizacionesComponent } from './components/legalizaciones/legalizaciones.component';
 import { DocumentosComponent } from './components/documentos/documentos.component';
@@ -48,6 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTabsModule,
     MatExpansionModule,
     MatTableModule,
+    PdfViewerModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
