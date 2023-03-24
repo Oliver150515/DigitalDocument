@@ -101,13 +101,29 @@
 
           <div class="form-group mt-5">
             <label style="font-weight: bold;">Institucion</label>
-            <input name="name" [(ngModel)]="userModel.name + ' ' + userModel.lastname" type="text" class="form-control"  style="width: 350px;" disabled>
+            <input name="name" [(ngModel)]="model?.academicInstitution.name" type="text" class="form-control"  style="width: 450px;" disabled>
           </div>
 
           <div class="form-group mt-5">
             <label style="font-weight: bold;">Tipo de documento</label>
-            <input name="name" [(ngModel)]="userModel.name + ' ' + userModel.lastname" type="text" class="form-control"  style="width: 350px;" disabled>
+            <input name="name" [(ngModel)]="model?.documentType.name" type="text" class="form-control"  style="width: 350px;" disabled>
           </div>
+
+          
+          <div class="form-group mt-5">
+            <label style="font-weight: bold;">Comentario</label>
+            <input name="name" [(ngModel)]="model.comentario" type="text" class="form-control"  style="width: 350px; height: 100px; text-align:justify">
+          </div>
+          
+          
+            <div class="row mt-5">
+                <div class="col-6">
+                    <button class="btn btn-primary btn-block mt-4 mb-3" style="background-color: #03b438; font-size: 14px; font-weight: 500;" type="submit" (click)="aprobar()">Aprobar</button>
+                </div>
+                <div class="col-5">
+                    <button class="btn btn-primary  btn-block mt-4 mb-3" style="background-color: #fe3535;  font-size: 14px; font-weight: 500; border: none;" type="submit" (click)="rechazar(model.comentario)">Rechazar</button>
+                </div>
+            </div>
 
         </div>
       </div>

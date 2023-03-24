@@ -43,7 +43,7 @@ export class LegalizacionesComponent implements OnInit {
         });
         form.resetForm();
         this.isFileChosen = false;
-        this.router.navigateByUrl('/solicitudes/pago-legalizacion/'+'fc36a986-9f17-4e38-a4a9-44ed7361ecba');
+        this.router.navigateByUrl('/solicitudes/pago-legalizacion/'+res);
 
       }, error => {
         Swal.fire({

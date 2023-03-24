@@ -33,5 +33,13 @@ export class LegalizacionesService {
     return this.http.patch(this.baseUrl + 'LegalizationRequest/mark-as-paid?legalizationId=' + id, {});
   }
 
+  legalizationAprobado(id: string) {
+    return this.http.patch(this.baseUrl + 'LegalizationRequest/approve?legalizationId=' + id, {});
+  }
+
+  legalizationrechazada(id: string, comentario: string) {
+    return this.http.patch(this.baseUrl + 'LegalizationRequest/deny?comment=' + comentario + '&legalizationId=' + id, {});
+  }
+
 }
 

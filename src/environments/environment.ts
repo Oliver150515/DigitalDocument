@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://fd40-2001-1308-1c5d-7500-708b-32d8-bee8-3f9d.ngrok.io/'
+  apiUrl: 'https://a72b-2001-1308-1c5d-7500-7881-7558-427b-fc38.ngrok.io/'
 };
 
 export const ciudades = [

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Legalization } from 'src/app/models/Legalization.model';
 import { DocumentoService } from 'src/app/services/documento.service';
+import { LegalizacionesService } from 'src/app/services/legalizaciones.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-legalizaciones-admin',
@@ -12,7 +14,9 @@ export class LegalizacionesAdminComponent implements OnInit {
   displayedColumnsRejected: string[] = ['tipoDocumento', 'institucion', 'carrera', 'fecha', 'comentario'];
   clickedRows = new Set<Legalization>();
   userModel: any = {};
-  
+  model: any = {};
+  id=JSON.parse(localStorage.getItem('user'))?.id.toString();
+
   public listLegalizationsPending: Legalization[] = [];
   public listTempLegalizationsPending: Legalization[] = [];
   
@@ -24,7 +28,7 @@ export class LegalizacionesAdminComponent implements OnInit {
 
   public pdfSrc: string;
   public base64: string;
-  constructor(private documentoSrv: DocumentoService) { }
+  constructor(private documentoSrv: DocumentoService, private legalizationService: LegalizacionesService) { }
 
   ngOnInit(): void {
     this.getDocumentos();
@@ -103,7 +107,10 @@ export class LegalizacionesAdminComponent implements OnInit {
   getById(documentId: string){
     this.documentoSrv.getById(documentId)
       .subscribe( (res: any) => {
+        console.log(res);
+        this.userModel = res.user;
         this.base64 = res.base64String;
+        this.model = res;
         
         let byteArry = new Uint8Array(
           atob(this.base64).split('').map((char) => char.charCodeAt(0))
@@ -112,6 +119,37 @@ export class LegalizacionesAdminComponent implements OnInit {
         const fileURL = URL.createObjectURL(file);
         this.pdfSrc = fileURL;
       });
+  }
+
+  aprobar(){
+    this.legalizationService.legalizationAprobado(this.model.id).subscribe( res => {
+      Swal.fire({
+        icon: 'success',
+        title: "Aprobado realizado correctamente!"
+      });
+      this.getDocumentos();
+    }, error => {
+      Swal.fire({
+        icon: 'error',
+        title: error.error.message
+      });
+    });
+  }
+
+  rechazar(comentario: string){
+    this.legalizationService.legalizationrechazada(this.model.id, this.model.comentario).subscribe( res => {
+      Swal.fire({
+        icon: 'success',
+        title: "Rechazado realizado correctamente!"
+      });
+      this.getDocumentos();
+      this.model.comentario = "";
+    }, error => {
+      Swal.fire({
+        icon: 'error',
+        title: error.error.message
+      });
+    });
   }
 
 
