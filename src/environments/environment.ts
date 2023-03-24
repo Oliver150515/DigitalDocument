@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://349e-2001-1308-26de-7000-cd78-ac33-e1a6-3253.ngrok.io/api/',
-  apiUrlErick: 'https://e030-2001-1308-1c1c-4400-5592-84aa-851f-aef6.ngrok.io/'
+  apiUrlErick: 'https://6dbf-2001-1308-1c5d-7500-9d9d-93dd-db0-ea4e.sa.ngrok.io/'
 };
 
 /*
