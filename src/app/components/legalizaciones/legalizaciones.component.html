@@ -21,7 +21,7 @@
                     <div class="col-4">
                         <div class="form-group">
                             <label style="font-weight: bold;">Nombre Completo</label>
-                            <input name="name" [(ngModel)]="userModel.name + ' ' +userModel.lastname" type="text" class="form-control"  disabled>
+                            <input name="name" [(ngModel)]="userModel.name + ' ' + userModel.lastname" type="text" class="form-control"  disabled>
                         </div>
                     </div>
                     <div class="col-4" style="margin-left: 200px;">
@@ -62,12 +62,19 @@
                         </div>
                     </div>
                     <div class="col-4" style="margin-left: 200px;">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label style="font-weight: bold;">Costo</label>
                             <div class="currency-wrap">
                                 <span class="currency-code">$</span>
                             </div>
                             <input name="amount" [(ngModel)]="model.amount" type="text" class="form-control text-currency"  disabled>
+                        </div> -->
+                        <div class="form-group">
+                            <label style="font-weight: bold;">Tipo de documento</label>
+                            <select name="documentTypeId" [(ngModel)]="model.documentTypeId" class="form-control form-control-select">
+                                <option [value]="career.id" *ngFor="let career of this.careersList">{{ career.name }}</option>
+                            </select>
+                            <span class="link hover mt-2" style="position: absolute;">Ver costo de documentos <i class="fa fa-solid fa-search"></i></span>
                         </div>
                     </div>
                 </div>
@@ -82,26 +89,37 @@
                         </div>
                     </div>
                     <div class="col-4" style="margin-left: 200px;">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label style="font-weight: bold;">Número de tarjeta</label>
                             <input mask="0000-0000-0000-0000" name="card" [(ngModel)]="model.card" type="text" class="form-control" placeholder="0000-0000-0000-0000" >
+                        </div> -->
+                        <div class="form-group">
+                            <label style="font-weight: bold;">Documento</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" style="height: 35px;">.PDF</span>
+                                </div>
+                                <div class="custom-file">
+                                  <input [(ngModel)]="model.documentPdf" name="documentPdf" type="file" class="custom-file-input" id="inputGroupFile01" #fileInput (change)="preUpload($event); handleUpload($event);" accept="application/pdf">
+                                  <label class="custom-file-label" *ngIf=!isFileChosen>Elegir archivo para legalizar</label>
+                                  <label class="custom-file-label" for="inputGroupFile01" *ngIf=isFileChosen>{{fileName}} <img src="../assets/img/PDF_file_icon.svg.png" width="15"> </label>
+                                </div>
+                              </div>
+
+                            <p class="mt-1" id="file_input_help" style="font-size: 13px;">Archivos aceptados solo (PDF).</p>
+                            <!-- <input type="checkbox">
+                            <label for="scales" class="ml-2">Recibir documento físico</label> -->
                         </div>
                     </div>
                 </div>
 
                 <div class="row mt-4">
                     <div class="col-4">
-                        <div class="form-group">
-                            <label style="font-weight: bold;">Tipo de documento</label>
-                            <select name="documentTypeId" [(ngModel)]="model.documentTypeId" class="form-control form-control-select">
-                                <option [value]="career.id" *ngFor="let career of this.careersList">{{ career.name }}</option>
-                            </select>
-                            <span class="link hover mt-2" style="position: absolute;">Ver costo de documentos <i class="fa fa-solid fa-search"></i></span>
-                        </div>
+                        
                     </div>
                     
                     <div class="col-4" style="margin-left: 200px;">
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
                                     <label style="font-weight: bold;">Fecha de expiración</label>
@@ -114,32 +132,16 @@
                                     <input mask="000" name="cvc" [(ngModel)]="model.cvc" type="text" class="form-control" placeholder="000" >
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                        
                     </div>
                 </div>
 
-                <div class="row mt-4" >
+                <div class="row" >
                     <div class="col-4">
-                        <div class="form-group">
-                            <label style="font-weight: bold;">Documento</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text" style="height: 35px;">.PDF</span>
-                                </div>
-                                <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="inputGroupFile01" #fileInput (change)="preUpload($event)" accept="application/pdf">
-                                  <label class="custom-file-label" *ngIf=!isFileChosen>Elegir archivo para legalizar</label>
-                                  <label class="custom-file-label" for="inputGroupFile01" *ngIf=isFileChosen>{{fileName}} <img src="../assets/img/PDF_file_icon.svg.png" width="15"> </label>
-                                </div>
-                              </div>
-
-                            <p class="mt-1" id="file_input_help" style="font-size: 13px;">Archivos aceptados solo (PDF).</p>
-                            <!-- <input type="checkbox">
-                            <label for="scales" class="ml-2">Recibir documento físico</label> -->
-                        </div>
+                     
                     </div>
-                    <div class="col-4" style="margin-top: 80px; margin-left: 200px;">
+                    <div class="col-4" style="margin-top: 10px; margin-left: 200px;">
                         <div class="row">
                             <div class="col-6">
                                 <button class="btn btn-primary btn-block mt-4 mb-3" style="background-color: #544bff; font-size: 14px; font-weight: 500;" type="submit">Enviar</button>

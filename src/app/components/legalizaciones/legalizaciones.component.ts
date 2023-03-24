@@ -30,7 +30,8 @@ export class LegalizacionesComponent implements OnInit {
   }
 
   solicitudLegalizacion(form: NgForm){
-
+    this.model.userId = this.id;
+    console.log(this.model);
   }
 
 
@@ -41,6 +42,16 @@ export class LegalizacionesComponent implements OnInit {
     }        
     this.fileName = file.name;
   }
+
+  handleUpload(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+        console.log(reader.result);
+    this.model.base64Document = reader.result.slice(29, reader.result.toString().length).toString();
+    };
+}
 
   fillData(){
     this.legalizacionService.getUserById(this.id).subscribe( res => {
