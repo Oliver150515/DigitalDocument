@@ -42,7 +42,8 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" routerLink="solicitudes/legalizacion">Solicitud Legalización</a>
+                        <a class="collapse-item" routerLink="solicitudes/legalizacion"  *ngIf="user.isadmin == 'False'">Solicitud Legalización</a>
+                        <a class="collapse-item" routerLink="solicitudes/legalizacion-admin"  *ngIf="user.isadmin == 'True'">Solicitud Legalización</a>
                     </div>
                 </div>
             </li>

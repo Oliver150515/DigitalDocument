@@ -25,6 +25,7 @@ import { MetodoPagoComponent } from './components/metodo-pago/metodo-pago.compon
 import { EditarPerfilComponent } from './components/perfil/editar-perfil/editar-perfil.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LegalizacionesAdminComponent } from './components/legalizaciones-admin/legalizaciones-admin.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DocumentosComponent,
     PerfilComponent,
     MetodoPagoComponent,
-    EditarPerfilComponent
+    EditarPerfilComponent,
+    LegalizacionesAdminComponent
    ],
   imports: [
     BrowserModule,

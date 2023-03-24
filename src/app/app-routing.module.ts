@@ -9,6 +9,7 @@ import { DocumentosComponent } from './components/documentos/documentos.componen
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { MetodoPagoComponent } from './components/metodo-pago/metodo-pago.component';
 import { EditarPerfilComponent } from './components/perfil/editar-perfil/editar-perfil.component';
+import { LegalizacionesAdminComponent } from './components/legalizaciones-admin/legalizaciones-admin.component';
 const routes: Routes = [
   {path: '', component: HomeComponent  },
   { path: '', 
@@ -20,6 +21,7 @@ const routes: Routes = [
       {path: 'configuracion/perfil', component:PerfilComponent},
       {path: 'configuracion/perfil/cambiar-contrasena', component:EditarPerfilComponent},
       {path: 'solicitudes/pago-legalizacion/:id', component:MetodoPagoComponent},
+      {path: 'solicitudes/legalizacion-admin', component: LegalizacionesAdminComponent}
     ]
   },
   
