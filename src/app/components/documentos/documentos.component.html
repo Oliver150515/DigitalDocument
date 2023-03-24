@@ -172,13 +172,15 @@
             <h2>Documento: {{selectLegalization.documentType.name}}</h2>
             <hr>
             <br>
-            <pdf-viewer
-                [src]="'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf'"
-                [render-text]="true"
-                [original-size]="false"
-                style="width: 600px; height: 500px;"
-                class="text-center"
-            ></pdf-viewer>
+            <div class="container">
+                <pdf-viewer
+                    [src]="pdfSrc"
+                    [render-text]="true"
+                    [original-size]="false"
+                    style="width: 600px; height: 500px;"
+                    class="text-center"
+                ></pdf-viewer>
+            </div>
         </div>
     </div>
 </div>

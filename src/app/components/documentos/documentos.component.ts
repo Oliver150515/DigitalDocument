@@ -29,6 +29,8 @@ export class DocumentosComponent implements OnInit {
   public loading: boolean = false;
   public loadingDocument: boolean = false;
 
+  public pdfSrc: string;
+
   constructor(private documentoSrv: DocumentoService) { }
 
   ngOnInit(): void {
@@ -104,8 +106,14 @@ export class DocumentosComponent implements OnInit {
 
   getById(documentId: string){
     this.documentoSrv.getById(documentId)
-      .subscribe( (res) => {
+      .subscribe( (res: any) => {
         console.log(res);
+        let byteArry = new Uint8Array(
+          atob(res.base64String).split('').map((char) => char.charCodeAt(0))
+        );
+        const file = new Blob([byteArry], { type: 'application/pdf' });
+        const fileURL = URL.createObjectURL(file);
+        this.pdfSrc = fileURL;
       });
   }
 
