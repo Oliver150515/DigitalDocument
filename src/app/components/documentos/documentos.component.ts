@@ -107,7 +107,7 @@ export class DocumentosComponent implements OnInit {
     const link = document.createElement('a');
     console.log('descargando pdf');
     link.href = source;
-    link.download = 'fileName.pdf';
+    link.download = `${this.selectLegalization.documentType.name}.pdf`;
     link.click();
   }
 
