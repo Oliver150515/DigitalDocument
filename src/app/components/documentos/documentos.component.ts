@@ -11,6 +11,7 @@ import { DocumentoService } from 'src/app/services/documento.service';
 
 export class DocumentosComponent implements OnInit {
   displayedColumns: string[] = ['tipoDocumento', 'institucion', 'carrera', 'fecha'];
+  displayedColumnsRejected: string[] = ['tipoDocumento', 'institucion', 'carrera', 'fecha', 'comentario'];
   clickedRows = new Set<Legalization>();
   
   public listLegalizationsPending: Legalization[] = [];
@@ -39,23 +40,22 @@ export class DocumentosComponent implements OnInit {
      * 0 : pendiente
      * 1 : aprobado
      * 2 : rechazado
+     * 3 : Pagado
      */
     this.loading = true;
-    
+
+    // CAMBIAR Y PONER USER ID
     this.documentoSrv.getAllLegalizationByUser('294D57EE-2F2B-4953-9A93-959E22EDCF4D')
       .subscribe((res: Legalization[]) => {
         console.log(res);
-        res.forEach( e => {
-          if(e.status === 0){
-            this.listLegalizationsPending = res;
-            this.listTempLegalizationsPending = this.listLegalizationsPending;
-          }
+        this.listLegalizationsPending = res.filter(e => e.status === 0);
+        this.listTempLegalizationsPending = this.listLegalizationsPending;
 
-          if(e.status === 1){
-            this.listLegalizationsApprove = res;
-            this.listTempLegalizationsApprove = this.listLegalizationsApprove
-          }
-        });
+        this.listLegalizationsApprove = res.filter(e => e.status === 3);
+        this.listTempLegalizationsApprove = this.listLegalizationsApprove;
+        
+        this.listLegalizationsRejected = res.filter(e => e.status === 2);
+        this.listTempLegalizationsRejected = this.listLegalizationsRejected;
       });
 
     setTimeout(()=>{
@@ -68,9 +68,9 @@ export class DocumentosComponent implements OnInit {
     this.clickedRows.clear();
     this.clickedRows.add(row);
 
-    console.log(row);
     setTimeout(()=>{
       this.selectLegalization = row;
+      this.getById(row.id);
       this.loadingDocument = true;
     }, 100);
   }
@@ -102,5 +102,11 @@ export class DocumentosComponent implements OnInit {
     }
   }
 
+  getById(documentId: string){
+    this.documentoSrv.getById(documentId)
+      .subscribe( (res) => {
+        console.log(res);
+      });
+  }
 
 }

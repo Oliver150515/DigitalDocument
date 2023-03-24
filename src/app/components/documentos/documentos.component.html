@@ -141,16 +141,21 @@
                                   <td mat-cell *matCellDef="let element"> {{ element.creationDate | date }} </td>
                                 </ng-container>
 
+                                <ng-container matColumnDef="comentario">
+                                    <th mat-header-cell *matHeaderCellDef> Comentario </th>
+                                    <td mat-cell *matCellDef="let element"> {{ element.comment  }} </td>
+                                </ng-container>
+
                                 <ng-container matColumnDef="empty-row">
                                     <mat-cell *matCellDef="let element">No Data</mat-cell>
                                 </ng-container>
 
-                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumnsRejected"></tr>
                                 <tr 
                                     mat-row
                                     (click)="mostrar(row)"
                                     [class.demo-row-is-clicked]="clickedRows.has(row)"
-                                    *matRowDef="let row; columns: displayedColumns;"
+                                    *matRowDef="let row; columns: displayedColumnsRejected;"
                                 ></tr>
                             </table>
                         </div>
@@ -166,6 +171,14 @@
         <div class="card-header py-3">
             <h2>Documento: {{selectLegalization.documentType.name}}</h2>
             <hr>
+            <br>
+            <pdf-viewer
+                [src]="'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf'"
+                [render-text]="true"
+                [original-size]="false"
+                style="width: 600px; height: 500px;"
+                class="text-center"
+            ></pdf-viewer>
         </div>
     </div>
 </div>
