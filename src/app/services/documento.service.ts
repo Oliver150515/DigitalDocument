@@ -18,4 +18,8 @@ export class DocumentoService {
   getById(documentId: string){
     return this.http.get( this.baseUrl + 'LegalizationRequest/get-by-id?id='+ documentId);
   }
+
+  getAllLegalizationById(status: number){
+    return this.http.get(this.baseUrl + 'LegalizationRequest/get-all?status='+status);
+  }
 }
