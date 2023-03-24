@@ -25,5 +25,13 @@ export class LegalizacionesService {
     return this.http.get(this.baseUrl + 'DocumentTypes');
   }
 
+  legalizationRequest(model: any) {
+    return this.http.post(this.baseUrl + 'LegalizationRequest', model);
+  }
+
+  legalizationPaid(id: string){
+    return this.http.patch(this.baseUrl + 'LegalizationRequest/mark-as-paid?legalizationId=' + id, {});
+  }
+
 }
 

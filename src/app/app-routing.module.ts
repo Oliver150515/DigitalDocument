@@ -19,7 +19,7 @@ const routes: Routes = [
       {path: 'consultas/consulta-legalizacion', component:DocumentosComponent},
       {path: 'configuracion/perfil', component:PerfilComponent},
       {path: 'configuracion/perfil/cambiar-contrasena', component:EditarPerfilComponent},
-      {path: 'metodoPago/home', component:MetodoPagoComponent},
+      {path: 'solicitudes/pago-legalizacion/:id', component:MetodoPagoComponent},
     ]
   },
   

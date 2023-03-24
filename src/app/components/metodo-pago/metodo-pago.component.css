@@ -1,0 +1,16 @@
+.active-route {
+    color: rgb(93, 96, 249);
+}
+
+.hover {
+    cursor: pointer;
+}
+
+label {
+    font-size: 14px;
+}
+
+.link {
+    color:rgb(93, 96, 249);
+    font-size: 13px;
+}
