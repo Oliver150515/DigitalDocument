@@ -56,23 +56,17 @@
                     <div class="col-4">
                         <div class="form-group">
                             <label style="font-weight: bold;">Institución académica</label>
-                            <select name="academicInstitutionId" [(ngModel)]="model.academicInstitutionId" class="form-control form-control-select" (change)="setCosto()">
+                            <select name="academicInstitutionId" [(ngModel)]="model.academicInstitutionId" class="form-control form-control-select" (change)="setCosto()" required>
                                 <option [value]="academic.id" *ngFor="let academic of this.academicInstitutionList">{{ academic.name }}</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-4" style="margin-left: 200px;">
-                        <!-- <div class="form-group">
-                            <label style="font-weight: bold;">Costo</label>
-                            <div class="currency-wrap">
-                                <span class="currency-code">$</span>
-                            </div>
-                            <input name="amount" [(ngModel)]="model.amount" type="text" class="form-control text-currency"  disabled>
-                        </div> -->
+                        
                         <div class="form-group">
                             <label style="font-weight: bold;">Tipo de documento</label>
-                            <select name="documentTypeId" [(ngModel)]="model.documentTypeId" class="form-control form-control-select">
-                                <option [value]="career.id" *ngFor="let career of this.careersList">{{ career.name }}</option>
+                            <select name="documentTypeId" [(ngModel)]="model.documentTypeId" class="form-control form-control-select" required> 
+                                <option [value]="document.id" *ngFor="let document of this.documentTypesList">{{ document.name }}</option>
                             </select>
                             <span class="link hover mt-2" style="position: absolute;">Ver costo de documentos <i class="fa fa-solid fa-search"></i></span>
                         </div>
@@ -83,8 +77,8 @@
                     <div class="col-4">
                         <div class="form-group">
                             <label style="font-weight: bold;">Carrera académica</label>
-                            <select name="careerId" [(ngModel)]="model.careerId" class="form-control form-control-select">
-                                <option [value]="document.id" *ngFor="let document of this.documentTypesList">{{ document.name }}</option>
+                            <select name="careerId" [(ngModel)]="model.careerId" class="form-control form-control-select" required>
+                                <option [value]="career.id" *ngFor="let career of this.careersList">{{ career.name }}</option>
                             </select>
                         </div>
                     </div>
@@ -94,22 +88,14 @@
                             <input mask="0000-0000-0000-0000" name="card" [(ngModel)]="model.card" type="text" class="form-control" placeholder="0000-0000-0000-0000" >
                         </div> -->
                         <div class="form-group">
-                            <label style="font-weight: bold;">Documento</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text" style="height: 35px;">.PDF</span>
-                                </div>
-                                <div class="custom-file">
-                                  <input [(ngModel)]="model.documentPdf" name="documentPdf" type="file" class="custom-file-input" id="inputGroupFile01" #fileInput (change)="preUpload($event); handleUpload($event);" accept="application/pdf">
-                                  <label class="custom-file-label" *ngIf=!isFileChosen>Elegir archivo para legalizar</label>
-                                  <label class="custom-file-label" for="inputGroupFile01" *ngIf=isFileChosen>{{fileName}} <img src="../assets/img/PDF_file_icon.svg.png" width="15"> </label>
-                                </div>
-                              </div>
-
-                            <p class="mt-1" id="file_input_help" style="font-size: 13px;">Archivos aceptados solo (PDF).</p>
-                            <!-- <input type="checkbox">
-                            <label for="scales" class="ml-2">Recibir documento físico</label> -->
+                            <label style="font-weight: bold;">Costo</label>
+                            <div class="currency-wrap">
+                                <span class="currency-code">$</span>
+                            </div>
+                            <input name="amount" [(ngModel)]="model.amount" type="text" class="form-control text-currency"  disabled>
                         </div>
+
+                       
                     </div>
                 </div>
 
@@ -133,15 +119,31 @@
                                 </div>
                             </div>
                         </div> -->
-                       
+
                     </div>
                 </div>
 
                 <div class="row" >
                     <div class="col-4">
-                     
+                        <div class="form-group">
+                            <label style="font-weight: bold;">Documento</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" style="height: 35px;">.PDF</span>
+                                </div>
+                                <div class="custom-file">
+                                  <input [(ngModel)]="model.documentPdf" name="documentPdf" type="file" class="custom-file-input" id="inputGroupFile01" #fileInput (change)="preUpload($event); handleUpload($event);" accept="application/pdf" required>
+                                  <label class="custom-file-label" *ngIf=!isFileChosen>Elegir archivo para legalizar</label>
+                                  <label class="custom-file-label" for="inputGroupFile01" *ngIf=isFileChosen>{{fileName}} <img src="../assets/img/PDF_file_icon.svg.png" width="15"> </label>
+                                </div>
+                              </div>
+
+                            <p class="mt-1" id="file_input_help" style="font-size: 13px;">Archivos aceptados solo (PDF).</p>
+                            <!-- <input type="checkbox">
+                            <label for="scales" class="ml-2">Recibir documento físico</label> -->
+                        </div>
                     </div>
-                    <div class="col-4" style="margin-top: 10px; margin-left: 200px;">
+                    <div class="col-4" style="margin-top: 100px; margin-left: 200px;">
                         <div class="row">
                             <div class="col-6">
                                 <button class="btn btn-primary btn-block mt-4 mb-3" style="background-color: #544bff; font-size: 14px; font-weight: 500;" type="submit">Enviar</button>

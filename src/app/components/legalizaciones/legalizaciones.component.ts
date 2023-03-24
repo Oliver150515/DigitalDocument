@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ComboBox } from 'src/app/models/ComboBox.model';
 import { CuentaUsuario } from 'src/app/models/CuentaUsuario.model';
 import { CuentaService } from 'src/app/services/cuenta.service';
 import { LegalizacionesService } from 'src/app/services/legalizaciones.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-legalizaciones',
@@ -22,7 +24,7 @@ export class LegalizacionesComponent implements OnInit {
   isFileChosen:boolean = false;
   fileName: string = '';
 
-  constructor(private legalizacionService: LegalizacionesService, private cuentaService: CuentaService) { }
+  constructor(private legalizacionService: LegalizacionesService, private cuentaService: CuentaService,private router: Router) { }
 
   ngOnInit(): void {
     this.model.identificationType = 0;
@@ -30,8 +32,31 @@ export class LegalizacionesComponent implements OnInit {
   }
 
   solicitudLegalizacion(form: NgForm){
+    const now = new Date();
     this.model.userId = this.id;
-    console.log(this.model);
+    this.model.creationDate = now;
+    if(form.valid){
+      this.legalizacionService.legalizationRequest(this.model).subscribe( res => {
+        Swal.fire({
+          icon: 'success',
+          title: "¡Solicitud de legalización creada, favor proceder al pago!"
+        });
+        form.resetForm();
+        this.isFileChosen = false;
+        this.router.navigateByUrl('/solicitudes/pago-legalizacion/'+'fc36a986-9f17-4e38-a4a9-44ed7361ecba');
+
+      }, error => {
+        Swal.fire({
+          icon: 'error',
+          title: error.error.message
+        });
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: "¡Favor completar todos los campos!"
+      });
+    }
   }
 
 
@@ -49,7 +74,7 @@ export class LegalizacionesComponent implements OnInit {
     reader.readAsDataURL(file);
     reader.onload = () => {
         console.log(reader.result);
-    this.model.base64Document = reader.result.slice(29, reader.result.toString().length).toString();
+    this.model.base64Document = reader.result;
     };
 }
 

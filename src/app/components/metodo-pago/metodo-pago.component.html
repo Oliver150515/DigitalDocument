@@ -1,4 +1,17 @@
-<div class="container py-5">
+<ol class="breadcrumb mt-5">
+    <li class="breadcrumb-item active hover" routerLink="/datospatrocinados"><i class="fa fa-home font-16 active mr-2"> </i>DigitalDocument</li>
+    <li class="breadcrumb-item active">Solicitudes</li>
+    <li class="breadcrumb-item active active-route">Pago Legalización</li>
+</ol>
+
+<div class="mt-5 ml-3">
+    <a class="image" style="margin-top: -1px;" routerLink="/solicitudes/legalizacion"></a>
+    <h5 style="margin-left: 30px;">Pago de legalización</h5>
+</div>
+
+
+
+<div class="container py-5" style="margin-left: -240px;">
     <div class="row">
         <div class="col-lg-7 mx-auto">
         <div class="bg-white rounded-lg shadow-sm p-5">
@@ -7,20 +20,21 @@
             <div class="tab-content">
             <!-- credit card info-->
             <div id="nav-tab-card" class="tab-pane fade show active" *ngIf="mensaje">
-                <p class="alert alert-success" *ngIf="!error">Pago Realizado Satisfactoriamente!!!</p>
+                <p class="alert alert-success" *ngIf="error == false">Pago Realizado Satisfactoriamente</p>
+                <p class="alert alert-danger" *ngIf="error == true">Ocurrio un error al realizar el pago</p>
             </div>
-                <form role="form">
+                <form #legalizacionForm="ngForm" (ngSubmit)="pagando(legalizacionForm)" autocomplete="off">
                 <div class="form-group">
                     <label for="username">Nombre completo (en la tarjeta)</label>
-                    <input type="text" name="username" placeholder="Pedrito el mas" class="form-control" required>
+                    <input type="text" [(ngModel)]="model.username" name="username" placeholder="NOMBRE DEL BENEFICIARIO" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="cardNumber">Numero Tarjeta</label>
                     <div class="input-group">
-                    <input type="text" name="cardNumber" placeholder="numero de tu tarjeta" class="form-control" required>
+                    <input  mask="0000-0000-0000-0000" type="text" [(ngModel)]="model.cardNumber" name="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX" class="form-control" required>
                     <div class="input-group-append">
                         <span class="input-group-text text-muted">
-                        <i class="fa fa-cc-visa mx-1"></i>
+                       <i class="fa fa-cc-visa"></i>
                         <i class="fa fa-cc-amex mx-1"></i>
                         <i class="fa fa-cc-mastercard mx-1"></i>
                         </span>
@@ -32,19 +46,19 @@
                     <div class="form-group">
                         <label><span class="hidden-xs">Expiracion</span></label>
                         <div class="input-group">
-                        <input type="number" placeholder="MM" name="" class="form-control" required>
-                        <input type="number" placeholder="YY" name="" class="form-control" required>
+                        <input mask="MM" type="number" [(ngModel)]="model.mes" placeholder="MM" name="mes" class="form-control" required>
+                        <input mask="00" type="number" [(ngModel)]="model.ano" placeholder="YY" name="ano" class="form-control" required>
                         </div>
                     </div>
                     </div>
                     <div class="col-sm-4">
                     <div class="form-group mb-4">
-                        <label title="Three-digits code on the back of your card">CVV</label>
-                        <input type="text" required class="form-control">
+                        <label title="Three-digits code on the back of your card">CVC</label>
+                        <input [(ngModel)]="model.cvc" mask="000" type="text" name="cvc" required class="form-control">
                     </div>
                     </div>
                 </div>
-                <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" (click)="pagando()"> Confirmar  </button>
+                <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" type="submit"> Confirmar  </button>
                 </form>
             </div>
             </div>
