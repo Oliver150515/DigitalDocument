@@ -15,6 +15,8 @@ export class DocumentosComponent implements OnInit {
   displayedColumnsRejected: string[] = ['tipoDocumento', 'institucion', 'carrera', 'fecha', 'comentario'];
   clickedRows = new Set<Legalization>();
   
+  id=JSON.parse(localStorage.getItem('user'))?.id.toString();
+
   public listLegalizationsPending: Legalization[] = [];
   public listTempLegalizationsPending: Legalization[] = [];
   
@@ -29,6 +31,9 @@ export class DocumentosComponent implements OnInit {
   public hoverShowed: boolean = true;
   public loading: boolean = false;
   public loadingDocument: boolean = false;
+
+  public pagar: boolean = false;
+  public volverSolicitar: boolean = false;
 
   public pdfSrc: string;
   public base64: string;
@@ -49,13 +54,13 @@ export class DocumentosComponent implements OnInit {
     this.loading = true;
 
     // CAMBIAR Y PONER USER ID
-    this.documentoSrv.getAllLegalizationByUser('294D57EE-2F2B-4953-9A93-959E22EDCF4D')
+    this.documentoSrv.getAllLegalizationByUser(this.id)
       .subscribe((res: Legalization[]) => {
         console.log(res);
-        this.listLegalizationsPending = res.filter(e => e.status === 0);
+        this.listLegalizationsPending = res.filter(e => e.status >= 0 && e.status <= 1);
         this.listTempLegalizationsPending = this.listLegalizationsPending;
 
-        this.listLegalizationsApprove = res.filter(e => e.status === 1);
+        this.listLegalizationsApprove = res.filter(e => e.status === 3);
         this.listTempLegalizationsApprove = this.listLegalizationsApprove;
         
         this.listLegalizationsRejected = res.filter(e => e.status === 2);
@@ -76,12 +81,23 @@ export class DocumentosComponent implements OnInit {
       this.selectLegalization = row;
       this.getById(row.id);
       this.loadingDocument = true;
+
+      if(this.selectLegalization.status >= 0 && this.selectLegalization.status <= 1){
+        this.pagar = true;
+      }
+
+      if(this.selectLegalization.status === 2){
+        this.volverSolicitar = true;
+      }
+
     }, 100);
   }
 
   changeTab(){
     if(this.loadingDocument == true){
       this.loadingDocument = false;
+      this.pagar = false;
+      this.volverSolicitar = false;
       this.clickedRows.clear();
     }
   }
@@ -91,7 +107,7 @@ export class DocumentosComponent implements OnInit {
     const link = document.createElement('a');
     console.log('descargando pdf');
     link.href = source;
-    link.download = 'fileName.pdf';
+    link.download = `${this.selectLegalization.documentType.name}.pdf`;
     link.click();
   }
 
@@ -131,5 +147,9 @@ export class DocumentosComponent implements OnInit {
 
   pagarDocumento(){
     this.router.navigateByUrl('/solicitudes/pago-legalizacion/'+ this.selectLegalization.id);
+  }
+
+  volverRealizarSolicitud(){
+    this.router.navigateByUrl('/solicitudes/legalizacion/' + this.selectLegalization.id)
   }
 }
