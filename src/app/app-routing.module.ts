@@ -17,6 +17,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: 'solicitudes/legalizacion', component:LegalizacionesComponent},
+      {path: 'solicitudes/legalizacion/:id/:status', component:LegalizacionesComponent},
       {path: 'consultas/consulta-legalizacion', component:DocumentosComponent},
       {path: 'configuracion/perfil', component:PerfilComponent},
       {path: 'configuracion/perfil/cambiar-contrasena', component:EditarPerfilComponent},

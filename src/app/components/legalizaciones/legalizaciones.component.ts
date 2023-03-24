@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ComboBox } from 'src/app/models/ComboBox.model';
 import { CuentaUsuario } from 'src/app/models/CuentaUsuario.model';
@@ -23,12 +23,17 @@ export class LegalizacionesComponent implements OnInit {
   documentTypesList: ComboBox[] = [];
   isFileChosen:boolean = false;
   fileName: string = '';
+  idlegalizacion = "";
+  status = 0;
 
-  constructor(private legalizacionService: LegalizacionesService, private cuentaService: CuentaService,private router: Router) { }
+  constructor(private legalizacionService: LegalizacionesService, private cuentaService: CuentaService,private router: Router,private activedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.model.identificationType = 0;
     this.fillData();
+    this.idlegalizacion = this.activedRoute.snapshot.paramMap.get("id");
+    this.status = Number(this.activedRoute.snapshot.paramMap.get("status"));
+    console.log(this.idlegalizacion, this.status);
   }
 
   solicitudLegalizacion(form: NgForm){
@@ -98,11 +103,16 @@ export class LegalizacionesComponent implements OnInit {
   }
 
   setCosto(){
-    if(this.model.academicInstitutionId == "70b319fe-54c9-43b1-9aeb-8b510e00f0c7"){
-      this.model.amount = 100;
+    if(this.status == 3) {
+      this.model.amount = 0;
     } else {
-      this.model.amount = 200;
+      if(this.model.academicInstitutionId == "70b319fe-54c9-43b1-9aeb-8b510e00f0c7"){
+        this.model.amount = 100;
+      } else {
+        this.model.amount = 200;
+      }
     }
+
   }
 
 }

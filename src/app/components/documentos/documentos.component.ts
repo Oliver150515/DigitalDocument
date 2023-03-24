@@ -146,7 +146,7 @@ export class DocumentosComponent implements OnInit {
   }
 
   pagarDocumento(){
-    this.router.navigateByUrl('/solicitudes/pago-legalizacion/'+ this.selectLegalization.id +'/'+this.selectLegalization.status);
+    this.router.navigateByUrl('/solicitudes/pago-legalizacion/'+ this.selectLegalization.id);
   }
 
   volverRealizarSolicitud(){

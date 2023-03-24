@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Legalization } from 'src/app/models/Legalization.model';
 import { DocumentoService } from 'src/app/services/documento.service';
 import { LegalizacionesService } from 'src/app/services/legalizaciones.service';
@@ -16,6 +17,8 @@ export class LegalizacionesAdminComponent implements OnInit {
   userModel: any = {};
   model: any = {};
   id=JSON.parse(localStorage.getItem('user'))?.id.toString();
+  idlegalizacion = "";
+  status = "";
 
   public listLegalizationsPending: Legalization[] = [];
   public listTempLegalizationsPending: Legalization[] = [];
@@ -33,6 +36,8 @@ export class LegalizacionesAdminComponent implements OnInit {
   ngOnInit(): void {
     this.getDocumentos();
   }
+
+
 
   getDocumentos(){
     /**
