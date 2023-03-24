@@ -24,3 +24,10 @@
 .example-disabled {
   display: inline-block;
 }
+
+.pdf-viewer {
+  height: 600px;
+  width: 500px;
+  display: block;
+  margin: 0 auto;
+}

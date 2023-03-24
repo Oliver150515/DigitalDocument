@@ -166,25 +166,31 @@
     </div>
 </div>
 
-<div class="container" *ngIf="loadingDocument">
-    <div class="card shadow mb-2 mt-2">
+<div class="container">
+    <div class="card shadow mb-2 mt-2" *ngIf="loadingDocument">
         <div class="card-header py-3">
+            Documento: {{selectLegalization.documentType.name}}
+        </div>
+        <div class="card-body">
+            <div class="card-text">
+                <pdf-viewer
+                    [src]="pdfSrc"
+                    [render-text]="true"
+                    [original-size]="false"
+                    [zoom]="1"
+                    class="pdf-viewer"
+                ></pdf-viewer>
+                <br>
+            </div> 
+        </div>
+        <hr>
+        <div class="card-body">
             <div class="row">
-                <div class="col-md-5">
-                    <h2>Documento: {{selectLegalization.documentType.name}}</h2>
-                    <hr>
-                    <br>
-                    <div>
-                        <pdf-viewer
-                            [src]="pdfSrc"
-                            [render-text]="true"
-                            [original-size]="false"
-                            style="width: 500px; height: 500px;"
-                            class="text-center"
-                        ></pdf-viewer>
-                        <br>
-                    </div>
-                    <button mat-raised-button color="warn" (click)="descargarPDF()">Descargar PDF</button>   
+                <div class="col-2">
+                    <button mat-raised-button color="warn" (click)="descargarPDF()">Descargar PDF</button>
+                </div>
+                <div class="col-2">
+                    <button mat-raised-button color="primary" (click)="descargarPDF()">Pagar Documento</button>
                 </div>
             </div>
         </div>
