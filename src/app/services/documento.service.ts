@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class DocumentoService {
-  baseUrl = environment.apiUrlErick;
+  baseUrl = environment.apiUrl;
 
 
   constructor(private http: HttpClient) { }
