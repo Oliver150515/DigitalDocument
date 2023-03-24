@@ -39,8 +39,8 @@ export class PerfilComponent implements OnInit {
       //this.model.id ="7F094C35-DC3A-4CF8-A058-38F7977D9310";
       this.model.id = JSON.parse(localStorage.getItem('user'))?.usuarioId.toString();
       this.model.identificationType=1;
-      this.model.email = "xd@hotmail.com",
-      
+      this.model.email = JSON.parse(localStorage.getItem('user'))?.email.toString();
+      this.model.roleId = "b6c977e9-09da-4454-94b1-58c22a7da7ab";
       
       
 this.perfilService.editPerfil(this.model).subscribe( res => {
