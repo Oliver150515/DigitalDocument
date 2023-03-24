@@ -30,7 +30,7 @@ export class DocumentosComponent implements OnInit {
   public loadingDocument: boolean = false;
 
   public pdfSrc: string;
-
+  public base64: string;
   constructor(private documentoSrv: DocumentoService) { }
 
   ngOnInit(): void {
@@ -53,7 +53,7 @@ export class DocumentosComponent implements OnInit {
         this.listLegalizationsPending = res.filter(e => e.status === 0);
         this.listTempLegalizationsPending = this.listLegalizationsPending;
 
-        this.listLegalizationsApprove = res.filter(e => e.status === 3);
+        this.listLegalizationsApprove = res.filter(e => e.status === 1);
         this.listTempLegalizationsApprove = this.listLegalizationsApprove;
         
         this.listLegalizationsRejected = res.filter(e => e.status === 2);
@@ -84,6 +84,15 @@ export class DocumentosComponent implements OnInit {
     }
   }
 
+  descargarPDF(){
+    const source = `data:application/pdf;base64,${this.base64}`;
+    const link = document.createElement('a');
+    console.log('descargando pdf');
+    link.href = source;
+    link.download = 'fileName.pdf';
+    link.click();
+  }
+
   buscar(termino: string){
     let arrayToReturn: any[] = [];
     termino = termino.toLowerCase();
@@ -107,9 +116,10 @@ export class DocumentosComponent implements OnInit {
   getById(documentId: string){
     this.documentoSrv.getById(documentId)
       .subscribe( (res: any) => {
-        console.log(res);
+        this.base64 = res.base64String;
+        
         let byteArry = new Uint8Array(
-          atob(res.base64String).split('').map((char) => char.charCodeAt(0))
+          atob(this.base64).split('').map((char) => char.charCodeAt(0))
         );
         const file = new Blob([byteArry], { type: 'application/pdf' });
         const fileURL = URL.createObjectURL(file);
