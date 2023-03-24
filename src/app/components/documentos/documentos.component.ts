@@ -57,13 +57,13 @@ export class DocumentosComponent implements OnInit {
     this.documentoSrv.getAllLegalizationByUser(this.id)
       .subscribe((res: Legalization[]) => {
         console.log(res);
-        this.listLegalizationsPending = res.filter(e => e.status >= 0 && e.status <= 1);
+        this.listLegalizationsPending = res.filter(e => e.status != 1 && e.status != 3);
         this.listTempLegalizationsPending = this.listLegalizationsPending;
 
-        this.listLegalizationsApprove = res.filter(e => e.status === 3);
+        this.listLegalizationsApprove = res.filter(e => e.status === 1);
         this.listTempLegalizationsApprove = this.listLegalizationsApprove;
         
-        this.listLegalizationsRejected = res.filter(e => e.status === 2);
+        this.listLegalizationsRejected = res.filter(e => e.status === 3);
         this.listTempLegalizationsRejected = this.listLegalizationsRejected;
       });
 
