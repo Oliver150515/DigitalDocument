@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Legalization } from 'src/app/models/Legalization.model';
 import { DocumentoService } from 'src/app/services/documento.service';
 
@@ -31,7 +32,8 @@ export class DocumentosComponent implements OnInit {
 
   public pdfSrc: string;
   public base64: string;
-  constructor(private documentoSrv: DocumentoService) { }
+
+  constructor(private documentoSrv: DocumentoService, private router: Router) { }
 
   ngOnInit(): void {
     this.getDocumentos();
@@ -127,4 +129,7 @@ export class DocumentosComponent implements OnInit {
       });
   }
 
+  pagarDocumento(){
+    this.router.navigateByUrl('/solicitudes/pago-legalizacion/'+ this.selectLegalization.id);
+  }
 }
