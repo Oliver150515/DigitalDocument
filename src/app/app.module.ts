@@ -15,9 +15,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { MetodoPagoComponent } from './components/metodo-pago/metodo-pago.component';
 import { EditarPerfilComponent } from './components/perfil/editar-perfil/editar-perfil.component';
 import { NgxMaskModule } from 'ngx-mask';
-
 @NgModule({
-  declarations: [				
+  declarations: [					
     AppComponent,
     NavComponent,
     HomeComponent,
@@ -25,8 +24,8 @@ import { NgxMaskModule } from 'ngx-mask';
     DocumentosComponent,
     PerfilComponent,
     MetodoPagoComponent,
-    EditarPerfilComponent,
-  ],
+    EditarPerfilComponent
+   ],
   imports: [
     BrowserModule,
     HttpClientModule,

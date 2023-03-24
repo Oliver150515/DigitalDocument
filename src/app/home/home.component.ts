@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Dashboard } from '../models/Dashboard.model';
 import { DashboardService } from '../services/dashboard.service';
 import Chart from 'chart.js/auto';
+import { CuentaService } from '../services/cuenta.service';
+import { Router } from '@angular/router';
 
 
 
@@ -15,14 +17,19 @@ export class HomeComponent implements OnInit {
   public dashboardTotal: Dashboard;
   public haveData: boolean = false;
   public chart: any;
+  currentUser: CuentaService;
 
-  usuarioIdSesion = JSON.parse(localStorage.getItem('user'))?.usuarioId;
+  usuarioIdSesion = JSON.parse(localStorage.getItem('user'))?.id;
+  userIsAdmin = JSON.parse(localStorage.getItem('user'))?.isadmin;
 
-
-  constructor(private dashboardSrv: DashboardService) { }
+  constructor(private dashboardSrv: DashboardService, private cuentaService: CuentaService,private router: Router) { }
 
   ngOnInit() {
     this.getDashboardData();
+    console.log(this.userIsAdmin);
+    if(this.userIsAdmin == 'False') {
+      this.router.navigateByUrl('/consultas/consulta-legalizacion');
+    }
   }
 
   getDashboardData(){

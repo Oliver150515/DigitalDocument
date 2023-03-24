@@ -22,3 +22,10 @@
     border-radius: 10rem;
     height: 50px;
   }
+  footer {
+    position:absolute;
+    bottom:0;
+    width:87.3%;
+    height:60px;   /* Height of the footer */
+    background:#6cf;
+ }

@@ -1,0 +1,32 @@
+.active-route {
+    color: rgb(93, 96, 249);
+}
+
+.hover {
+    cursor: pointer;
+}
+
+label {
+    font-size: 14px;
+}
+
+.link {
+    color:rgb(93, 96, 249);
+    font-size: 13px;
+}
+
+.currency-wrap{
+    position:relative;
+}
+
+.currency-code{
+    position:absolute;
+    left:8px;
+    top:7px;
+}
+
+.text-currency{
+    padding:10px 20px;
+    border:solid 1px #ccc;
+    border-radius:5px;
+}
