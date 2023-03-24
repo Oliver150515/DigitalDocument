@@ -17,8 +17,9 @@ export class PerfilComponent implements OnInit {
     this.getPerfil();
   }
   getPerfil(){
-   
-    var  id=JSON.parse(localStorage.getItem('user'))?.usuarioId.toString();
+  
+    var  id=JSON.parse(localStorage.getItem('user'))?.id.toString();
+
     this.perfilService.getPerfil(id).subscribe(
      res=>{
  
@@ -37,7 +38,7 @@ export class PerfilComponent implements OnInit {
     if(form.valid){
 
       //this.model.id ="7F094C35-DC3A-4CF8-A058-38F7977D9310";
-      this.model.id = JSON.parse(localStorage.getItem('user'))?.usuarioId.toString();
+      this.model.id = JSON.parse(localStorage.getItem('user'))?.id.toString();
       this.model.identificationType=1;
       this.model.email = JSON.parse(localStorage.getItem('user'))?.email.toString();
       this.model.roleId = "b6c977e9-09da-4454-94b1-58c22a7da7ab";

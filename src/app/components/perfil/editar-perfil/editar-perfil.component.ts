@@ -33,7 +33,7 @@ export class EditarPerfilComponent implements OnInit {
   modificarDepartamento(form: NgForm){
     if(form.valid){
 
-      var  id=JSON.parse(localStorage.getItem('user'))?.usuarioId.toString();
+      var  id=JSON.parse(localStorage.getItem('user'))?.id.toString();
     
       // this.model.birthdate = new Date(this.model.birthdate);
       
