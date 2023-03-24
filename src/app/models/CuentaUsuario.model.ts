@@ -1,5 +1,10 @@
 export interface CuentaUsuario {
-    usuarioId: number;
-    nombreUsuario: string;
-    token: string;
+    aud: string;
+    email: string;
+    exp: number;
+    id: string;
+    isadmin: string;
+    iss: string;
+    lastname: string;
+    name: string;
 }

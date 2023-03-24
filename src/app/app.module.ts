@@ -13,8 +13,8 @@ import { LegalizacionesComponent } from './components/legalizaciones/legalizacio
 import { DocumentosComponent } from './components/documentos/documentos.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { MetodoPagoComponent } from './components/metodo-pago/metodo-pago.component';
-import { InformacionPersonalComponent } from './components/informacion-personal/informacion-personal.component';
 import { EditarPerfilComponent } from './components/perfil/editar-perfil/editar-perfil.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [				
@@ -25,7 +25,6 @@ import { EditarPerfilComponent } from './components/perfil/editar-perfil/editar-
     DocumentosComponent,
     PerfilComponent,
     MetodoPagoComponent,
-    InformacionPersonalComponent,
     EditarPerfilComponent,
   ],
   imports: [
@@ -34,7 +33,8 @@ import { EditarPerfilComponent } from './components/perfil/editar-perfil/editar-
     AppRoutingModule,
     FormsModule,
     CommonModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    NgxMaskModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}

@@ -15,17 +15,17 @@
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <hr class="sidebar-divider" *ngIf="user.isadmin != 'False'">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item mt-3">
+            <li class="nav-item mt-3" *ngIf="user.isadmin != 'False'">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <!-- <i class="bi bi-file-medical-fill"></i> -->
                     <span>Home</span>
                 </a>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" routerLink="administracion/departamentos">Dashboard</a>
+                        <a class="collapse-item" routerLink="/">Dashboard</a>
                     </div>
                 </div>
             </li>
@@ -42,22 +42,22 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" routerLink="administracion/departamentos">Solicitude Legalización</a>
+                        <a class="collapse-item" routerLink="solicitudes/legalizacion">Solicitud Legalización</a>
                     </div>
                 </div>
             </li>
 
-            <hr class="sidebar-divider">
+            <hr class="sidebar-divider"  *ngIf="user.isadmin == 'False'">
             <!-- Nav Item - Pages Collapse Menu -->
             
-            <li class="nav-item">
+            <li class="nav-item"  *ngIf="user.isadmin == 'False'">
                 <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                     <!-- <i class="bi bi-file-medical-fill"></i> -->
                     <span>Consultas</span>
                 </a>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" routerLink="administracion/departamentos">Consultas Legalización</a>
+                        <a class="collapse-item" routerLink="consultas/consulta-legalizacion">Consultas Legalización</a>
                     </div>
                 </div>
             </li>
@@ -73,7 +73,7 @@
                 </a>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" routerLink="administracion/departamentos">Configuración Perfil</a>
+                        <a class="collapse-item" routerLink="configuracion/perfil">Configuración Perfil</a>
                     </div>
                 </div>
             </li>
@@ -99,7 +99,7 @@
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.nombreUsuario }}</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.name + ' ' + user.lastname + ' | ' + (user.isadmin == 'False' ? 'Estudiante' : 'Administrador') }}</span>
                             <img class="img-profile rounded-circle" src="../assets/img/undraw_profile.svg">
                         </a>
                         <!-- Dropdown - User Information -->
@@ -138,12 +138,12 @@
                                                     <div class="text-center">
                                                         <h1 class="h4 text-gray-900 mb-4"><strong>Iniciar Sesión</strong></h1>
                                                     </div>
-                                                    <form #loginForm="ngForm" class="user" (ngSubmit)="login(loginForm)" autocomplete="off">
+                                                    <form #loginForm="ngForm" class="user" (ngSubmit)="login(loginForm)" autocomplete="on">
                                                         <div class="form-group">
-                                                            <input name="nombreUsuario" [(ngModel)]="model.nombreUsuario" type="text" class="form-control form-control-user" placeholder="Cedula">
+                                                            <input name="nombreUsuario" [(ngModel)]="model.email" type="email" class="form-control form-control-user" placeholder="example@gmail.com" required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="Contraseña">
+                                                            <input name="contrasena" [(ngModel)]="model.password" type="password" class="form-control form-control-user" placeholder="Contraseña" required>
                                                         </div>
                                                         <div>
                                                          <a class="forgot-password mr-3 mb-4" (click)="forgot_password = true;">¿Has olvidado tu contraseña?</a>   
@@ -163,15 +163,15 @@
                                                     <div class="text-center">
                                                         <h1 class="h4 text-gray-900 mb-4"><strong>Cambiar Contraseña</strong></h1>
                                                     </div>
-                                                    <form #loginForm="ngForm" class="user" (ngSubmit)="login(loginForm)" autocomplete="off">
+                                                    <form #changePasswordForm="ngForm" class="user" (ngSubmit)="changePassword(changePasswordForm)" autocomplete="on">
                                                         <div class="form-group">
-                                                            <input name="nombreUsuario" [(ngModel)]="model.nombreUsuario" type="text" class="form-control form-control-user" placeholder="Correo">
+                                                            <input name="email" [(ngModel)]="model.email" type="text" class="form-control form-control-user" placeholder="Correo">
                                                         </div>
                                                         <div class="form-group">
-                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="Nueva Contraseña">
+                                                            <input name="password" [(ngModel)]="model.password" type="password" class="form-control form-control-user" placeholder="Nueva Contraseña">
                                                         </div>
                                                         <div class="form-group">
-                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="Confirmar Contraseña">
+                                                            <input name="passwordConfirmation" [(ngModel)]="model.passwordConfirmation" type="password" class="form-control form-control-user" placeholder="Confirmar Contraseña">
                                                         </div>
                                                         <div>
                                                             <a class="forgot-password mr-3 mb-4" (click)="forgot_password = false;"><- Iniciar Sesión</a>   
@@ -210,33 +210,33 @@
                                                     <div class="">
                                                         <h1 class="h4 text-gray-900 mb-4"><strong>Registrar Usuario</strong></h1>
                                                     </div>
-                                                    <form #loginForm="ngForm" class="user mt-5" (ngSubmit)="login(loginForm)" autocomplete="off">
+                                                    <form #registerForm="ngForm" class="user mt-5" (ngSubmit)="registrar(registerForm)" autocomplete="on">
                                                    
                                                       
                                                         <div class="form-group">
                                                             <label style="font-weight: bold;">Nombre</label>
-                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="Nombre">
+                                                            <input name="name" [(ngModel)]="model.name" type="text" class="form-control form-control-user" placeholder="Nombre" required>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label style="font-weight: bold;">Apellido</label>
-                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="Apellido">
+                                                            <input name="lastname" [(ngModel)]="model.lastname" type="text" class="form-control form-control-user" placeholder="Apellido" required>
                                                         </div>
 
                                                         <div class="row">
                                                             <div class="col-6">
                                                                 <div class="form-group">
                                                                     <label style="font-weight: bold;">Tipo Identificacion</label>
-                                                                    <select class="form-control form-control-select">
-                                                                        <option value="1">Cedula</option>
-                                                                        <option value="2">Pasaporte</option>
+                                                                    <select name="identificationType" [(ngModel)]="model.identificationType" class="form-control form-control-select" required>
+                                                                        <option value="0">Cedula</option>
+                                                                        <option value="1">Pasaporte</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="col-6">
                                                                 <div class="form-group">
                                                                     <label style="font-weight: bold;">Identificacion</label>
-                                                                    <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="000-0000000-0">
+                                                                    <input name="identification" [mask]="(model.identificationType == 0 ? '000-0000000-0' : 'AAAAAAAAA')" [(ngModel)]="model.identification" type="text" class="form-control form-control-user" placeholder="Digite el documento" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -244,36 +244,35 @@
 
 
                                                         <div class="form-group">
-                                                            <label style="font-weight: bold;">Telefono</label>
-                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="809-000-0000">
+                                                            <label style="font-weight: bold;">Teléfono</label>
+                                                            <input name="phone" mask="000-000-0000" pattern="(8(?:0|2|4)9)\-?(\d{3})\-?(\d{4})" [(ngModel)]="model.phone" type="text" class="form-control form-control-user" placeholder="809-000-0000" required>
                                                         </div>
                                                         
                                                         <div class="row">
                                                             <div class="col-5">
                                                                 <div class="form-group">
                                                                     <label style="font-weight: bold;">Ciudad</label>
-                                                                    <select class="form-control form-control-select">
-                                                                        <option value="1">Cedula</option>
-                                                                        <option value="2">Pasaporte</option>
+                                                                    <select name="city" [(ngModel)]="model.city" class="form-control form-control-select" required>
+                                                                        <option [value]="ciudad.provincia" *ngFor="let ciudad of ciudades">{{ciudad.provincia}}</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="col-7">
                                                                 <div class="form-group">
-                                                                    <label style="font-weight: bold;">Direccion</label>
-                                                                    <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="809-000-0000">
+                                                                    <label style="font-weight: bold;">Dirección</label>
+                                                                    <input name="addresss" [(ngModel)]="model.addresss" type="text" class="form-control form-control-user" required>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                        
                                                         <div class="form-group">
                                                             <label style="font-weight: bold;">Correo</label>
-                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="example@gmail.com">
+                                                            <input name="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"  [(ngModel)]="model.email" type="email" class="form-control form-control-user" placeholder="example@gmail.com" required>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label style="font-weight: bold;">Contraseña</label>
-                                                            <input name="contrasena" [(ngModel)]="model.contrasena" type="password" class="form-control form-control-user" placeholder="xxxxxxxxxxxxxxx">
+                                                            <input name="password" [(ngModel)]="model.password" type="password" class="form-control form-control-user" placeholder="xxxxxxxxxxxxxxx" required>
                                                         </div>
                                                        
 
@@ -291,7 +290,7 @@
             </div>
             
 
-            <div class="container-fluid" >
+            <div class="container-fluid" *ngIf="(currentUser$ | async) as user">
                 <router-outlet></router-outlet>
             </div>
 

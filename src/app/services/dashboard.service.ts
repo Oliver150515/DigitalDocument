@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 
 export class DashboardService {
-  baseUrl = environment.apiUrlErick;
+  baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 

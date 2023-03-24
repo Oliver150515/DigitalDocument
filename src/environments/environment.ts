@@ -4,15 +4,132 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://349e-2001-1308-26de-7000-cd78-ac33-e1a6-3253.ngrok.io/api/',
-  apiUrlErick: 'https://e030-2001-1308-1c1c-4400-5592-84aa-851f-aef6.ngrok.io/'
+  apiUrl: 'https://localhost:7134/'
 };
 
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+export const ciudades = [
+	{
+		"provincia_id" : 1,
+		"provincia" : "Distrito Nacional"
+	},
+	{
+		"provincia_id" : 21,
+		"provincia" : "San Pedro de Macorís"
+	},
+	{
+		"provincia_id" : 22,
+		"provincia" : "La Romana"
+	},
+	{
+		"provincia_id" : 23,
+		"provincia" : "La Altagracia"
+	},
+	{
+		"provincia_id" : 24,
+		"provincia" : "El Seibo"
+	},
+	{
+		"provincia_id" : 25,
+		"provincia" : "Hato Mayor"
+	},
+	{
+		"provincia_id" : 31,
+		"provincia" : "Duarte"
+	},
+	{
+		"provincia_id" : 32,
+		"provincia" : "Samaná"
+	},
+	{
+		"provincia_id" : 33,
+		"provincia" : "Maria Trinidad Sánchez"
+	},
+	{
+		"provincia_id" : 34,
+		"provincia" : "Salcedo"
+	},
+	{
+		"provincia_id" : 41,
+		"provincia" : "La Vega"
+	},
+	{
+		"provincia_id" : 42,
+		"provincia" : "Monseñor Nouel"
+	},
+	{
+		"provincia_id" : 43,
+		"provincia" : "Sánchez Ramirez"
+	},
+	{
+		"provincia_id" : 51,
+		"provincia" : "Santiago"
+	},
+	{
+		"provincia_id" : 56,
+		"provincia" : "Espaillat"
+	},
+	{
+		"provincia_id" : 57,
+		"provincia" : "Puerto Plata"
+	},
+	{
+		"provincia_id" : 61,
+		"provincia" : "Valverde"
+	},
+	{
+		"provincia_id" : 62,
+		"provincia" : "Monte Cristi"
+	},
+	{
+		"provincia_id" : 63,
+		"provincia" : "Dajabónn"
+	},
+	{
+		"provincia_id" : 64,
+		"provincia" : "Santiago Rodríguez"
+	},
+	{
+		"provincia_id" : 71,
+		"provincia" : "Azua"
+	},
+	{
+		"provincia_id" : 72,
+		"provincia" : "San Juan de la Maguana"
+	},
+	{
+		"provincia_id" : 73,
+		"provincia" : "Elías Piña"
+	},
+	{
+		"provincia_id" : 81,
+		"provincia" : "Barahona"
+	},
+	{
+		"provincia_id" : 82,
+		"provincia" : "Bahoruco"
+	},
+	{
+		"provincia_id" : 83,
+		"provincia" : "Independencia"
+	},
+	{
+		"provincia_id" : 84,
+		"provincia" : "Perdenales"
+	},
+	{
+		"provincia_id" : 91,
+		"provincia" : "San Cristóbal"
+	},
+	{
+		"provincia_id" : 92,
+		"provincia" : "Monte Plata"
+	},
+	{
+		"provincia_id" : 93,
+		"provincia" : "San José de Ocoa"
+	},
+	{
+		"provincia_id" : 94,
+		"provincia" : "Peravia"
+	}
+];

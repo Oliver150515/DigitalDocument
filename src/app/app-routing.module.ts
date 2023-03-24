@@ -6,7 +6,6 @@ import { LegalizacionesComponent } from './components/legalizaciones/legalizacio
 import { HomeComponent } from './home/home.component';
 
 import { DocumentosComponent } from './components/documentos/documentos.component';
-import { InformacionPersonalComponent } from './components/informacion-personal/informacion-personal.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { MetodoPagoComponent } from './components/metodo-pago/metodo-pago.component';
 import { EditarPerfilComponent } from './components/perfil/editar-perfil/editar-perfil.component';
@@ -16,11 +15,10 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      {path: 'legalizaciones/home', component:LegalizacionesComponent},
-      {path: 'documentos/home', component:DocumentosComponent},
-      {path: 'informacion/home', component:InformacionPersonalComponent},
-      {path: 'perfil/home', component:PerfilComponent},
-      {path: 'resetPassPerfil/home', component:EditarPerfilComponent},
+      {path: 'solicitudes/legalizacion', component:LegalizacionesComponent},
+      {path: 'consultas/consulta-legalizacion', component:DocumentosComponent},
+      {path: 'configuracion/perfil', component:PerfilComponent},
+      {path: 'configuracion/perfil/cambiar-contrasena', component:EditarPerfilComponent},
       {path: 'metodoPago/home', component:MetodoPagoComponent},
     ]
   },
