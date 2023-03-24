@@ -82,11 +82,11 @@ export class DocumentosComponent implements OnInit {
       this.getById(row.id);
       this.loadingDocument = true;
 
-      if(this.selectLegalization.status >= 0 && this.selectLegalization.status <= 1){
+      if(this.selectLegalization.status != 1 && this.selectLegalization.status != 3){
         this.pagar = true;
       }
 
-      if(this.selectLegalization.status === 2){
+      if(this.selectLegalization.status === 3){
         this.volverSolicitar = true;
       }
 
@@ -146,10 +146,10 @@ export class DocumentosComponent implements OnInit {
   }
 
   pagarDocumento(){
-    this.router.navigateByUrl('/solicitudes/pago-legalizacion/'+ this.selectLegalization.id);
+    this.router.navigateByUrl('/solicitudes/pago-legalizacion/'+ this.selectLegalization.id +'/'+this.selectLegalization.status);
   }
 
   volverRealizarSolicitud(){
-    this.router.navigateByUrl('/solicitudes/legalizacion/' + this.selectLegalization.id)
+    this.router.navigateByUrl('/solicitudes/legalizacion/' + this.selectLegalization.id +'/'+this.selectLegalization.status);
   }
 }
