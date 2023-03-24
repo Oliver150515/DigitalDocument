@@ -1,45 +1,106 @@
 import { Component, OnInit } from '@angular/core';
-import { Documento } from 'src/app/models/Documento.model';
+import { Legalization } from 'src/app/models/Legalization.model';
+import { DocumentoService } from 'src/app/services/documento.service';
 
 @Component({
   selector: 'app-documentos',
   templateUrl: './documentos.component.html',
-  styleUrls: ['./documentos.component.css']
+  styleUrls: ['./documentos.component.css'],
 })
+
+
 export class DocumentosComponent implements OnInit {
-  public listDocumentos: Documento[] = [];
-  public listTempDocumento: Documento[] = [];
+  displayedColumns: string[] = ['tipoDocumento', 'institucion', 'carrera', 'fecha'];
+  clickedRows = new Set<Legalization>();
+  
+  public listLegalizationsPending: Legalization[] = [];
+  public listTempLegalizationsPending: Legalization[] = [];
+  
+  public listLegalizationsApprove: Legalization[] = [];
+  public listTempLegalizationsApprove: Legalization[] = [];
+  
+  public listLegalizationsRejected: Legalization[] = [];
+  public listTempLegalizationsRejected: Legalization[] = [];
+  
+  public selectLegalization: Legalization;
 
   public hoverShowed: boolean = true;
   public loading: boolean = false;
-  constructor() { }
+  public loadingDocument: boolean = false;
+
+  constructor(private documentoSrv: DocumentoService) { }
 
   ngOnInit(): void {
+    this.getDocumentos();
   }
 
   getDocumentos(){
+    /**
+     * 0 : pendiente
+     * 1 : aprobado
+     * 2 : rechazado
+     */
     this.loading = true;
-    // obtener desde metodo de la api 
-    this.loading = false;
+    
+    this.documentoSrv.getAllLegalizationByUser('294D57EE-2F2B-4953-9A93-959E22EDCF4D')
+      .subscribe((res: Legalization[]) => {
+        console.log(res);
+        res.forEach( e => {
+          if(e.status === 0){
+            this.listLegalizationsPending = res;
+            this.listTempLegalizationsPending = this.listLegalizationsPending;
+          }
+
+          if(e.status === 1){
+            this.listLegalizationsApprove = res;
+            this.listTempLegalizationsApprove = this.listLegalizationsApprove
+          }
+        });
+      });
+
+    setTimeout(()=>{
+      this.loading = false;
+    }, 1000);
+  }
+
+  mostrar(row){
+    this.loadingDocument = false;
+    this.clickedRows.clear();
+    this.clickedRows.add(row);
+
+    console.log(row);
+    setTimeout(()=>{
+      this.selectLegalization = row;
+      this.loadingDocument = true;
+    }, 100);
+  }
+
+  changeTab(){
+    if(this.loadingDocument == true){
+      this.loadingDocument = false;
+      this.clickedRows.clear();
+    }
   }
 
   buscar(termino: string){
     let arrayToReturn: any[] = [];
     termino = termino.toLowerCase();
     this.loading = true;
-    for ( let i = 0; i < this.listTempDocumento.length; i++) {
-      let documento = this.listTempDocumento[i];
-      let nombre = documento.tipoDocumento.toLowerCase();
+    for ( let i = 0; i < this.listTempLegalizationsPending.length; i++) {
+      let documento = this.listTempLegalizationsPending[i];
+      let nombre = documento.documentType.name.toLowerCase();
       if (nombre.indexOf(termino) >= 0) {
         arrayToReturn.push(documento);
       }
     }
-    this.listDocumentos = arrayToReturn;
+    this.listLegalizationsPending = arrayToReturn;
     this.loading = false;
-    if(this.listDocumentos.length == 0){
+    if(this.listLegalizationsPending.length == 0){
       this.hoverShowed = false;
     } else{
       this.hoverShowed = true;
     }
   }
+
+
 }
