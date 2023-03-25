@@ -49,10 +49,10 @@ export class LegalizacionesAdminComponent implements OnInit {
     this.loading = true;
 
     // CAMBIAR Y PONER USER ID
-    this.documentoSrv.getAllLegalizationById(0)
+    this.documentoSrv.getAllLegalizationById(1)
       .subscribe((res: Legalization[]) => {
         console.log(res);
-        this.listLegalizationsPending = res.filter(e => e.status === 0);
+        this.listLegalizationsPending = res.filter(e => e.status === 1);
         this.listTempLegalizationsPending = this.listLegalizationsPending;;
       });
 

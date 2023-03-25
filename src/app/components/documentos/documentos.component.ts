@@ -45,22 +45,17 @@ export class DocumentosComponent implements OnInit {
   }
 
   getDocumentos(){
-    /**
-     * 0 : pendiente
-     * 1 : aprobado
-     * 2 : rechazado
-     * 3 : Pagado
-     */
+
     this.loading = true;
 
     // CAMBIAR Y PONER USER ID
     this.documentoSrv.getAllLegalizationByUser(this.id)
       .subscribe((res: Legalization[]) => {
         console.log(res);
-        this.listLegalizationsPending = res.filter(e => e.status != 1 && e.status != 3);
+        this.listLegalizationsPending = res.filter(e => e.status != 2 && e.status != 3);
         this.listTempLegalizationsPending = this.listLegalizationsPending;
 
-        this.listLegalizationsApprove = res.filter(e => e.status === 1);
+        this.listLegalizationsApprove = res.filter(e => e.status === 2);
         this.listTempLegalizationsApprove = this.listLegalizationsApprove;
         
         this.listLegalizationsRejected = res.filter(e => e.status === 3);
